@@ -457,7 +457,7 @@ traceroute to ${this.escapeHtml(trHost)} (${trHost}), 30 hops max, 60 byte packe
         break;
 
       case "curl":
-        const curlUrl = arg || "https://bigbois.live";
+        const curlUrl = arg || "https://example.edu";
         this.appendOutput(`
 * Connected to ${this.escapeHtml(curlUrl)} (142.250.190.46) port 443
 * ALPN: offers h2,http/1.1

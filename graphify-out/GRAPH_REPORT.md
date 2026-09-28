@@ -1,7 +1,7 @@
 # Graph Report - osi-interactive-suite  (2026-09-28)
 
 ## Corpus Check
-- 6 files · ~24,042 words
+- 6 files · ~27,524 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `653b7153`
+- Built from commit: `a74b6d03`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -50,7 +50,7 @@ Nodes (7): initHeaderInspector(), renderInspector(), showFieldDetail(), initLaye
 
 ### Community 7 - "OSI 7-Layer Interactive Protocol Suite"
 Cohesion: 0.40
-Nodes (4): 📄 Documentation, OSI 7-Layer Interactive Protocol Suite, 🚀 Running Locally, 🌟 Suite Capabilities
+Nodes (4): 📄 Documentation & Academic Sources, OSI 7-Layer Interactive Protocol Suite, 🚀 Running Locally, 🌟 Suite Capabilities
 
 ## Knowledge Gaps
 - **6 isolated node(s):** `HEADER_SPECS`, `LAYER_DETAILS`, `QUIZ_QUESTIONS`, `🌟 Suite Capabilities`, `🚀 Running Locally` (+1 more)

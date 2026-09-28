@@ -24,7 +24,8 @@ A comprehensive, zero-dependency educational laboratory and reference applicatio
 5. **Subnet & IPv6 EUI-64 Calculators:** CIDR calculations, RFC 1918 scope identification, and EUI-64 link-local address generation with 7th-bit inversion.
 6. **CSCI 250 CLI Diagnostics Terminal:** In-browser terminal simulating `ping`, `ifconfig`, `ip a`, `ipconfig /all`, `nslookup`, `dig`, `arp -a`, `ss`, `netstat`, `traceroute`, `curl`, `openssl s_client`, `dhclient -v`, and `ssh`.
 7. **30-Question Assessment Quiz:** Interactive quiz bank curated from curriculum homeworks, lab assignments, and exam review guides.
-8. **Publication-Grade 10-Chapter Guide (PDF):** Standalone printable reference guide (`OSI_Complete_7_Layer_Guide.pdf`).
+8. **Academic Sources & Standards Bibliography:** Dedicated index and standalone printable document (`sources.html`) citing standard textbooks (Kurose & Ross, Tanenbaum, Stevens & Fall) and authoritative IETF RFC / IEEE standards.
+9. **Publication-Grade 11-Chapter Guide (PDF):** Standalone printable reference guide (`OSI_Complete_7_Layer_Guide.pdf`).
 
 ## 🚀 Running Locally
 
@@ -38,6 +39,6 @@ xdg-open index.html
 python3 -m http.server 8080
 ```
 
-## 📄 Documentation
+## 📄 Documentation & Academic Sources
 
-The complete 10-chapter technical reference is included as both HTML (`guide.html`) and PDF (`OSI_Complete_7_Layer_Guide.pdf`).
+The complete 11-chapter technical reference is included as both HTML (`guide.html`) and PDF (`OSI_Complete_7_Layer_Guide.pdf`), along with the academic sources bibliography (`sources.html`).

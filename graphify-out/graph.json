@@ -660,16 +660,16 @@
       "source_location": "L1"
     },
     {
-      "id": "readme_documentation",
-      "label": "\ud83d\udcc4 Documentation",
+      "id": "readme_documentation_academic_sources",
+      "label": "\ud83d\udcc4 Documentation & Academic Sources",
       "_origin": "ast",
       "community": 7,
       "community_name": "OSI 7-Layer Interactive Protocol Suite",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "\ud83d\udcc4 documentation",
+      "norm_label": "\ud83d\udcc4 documentation & academic sources",
       "source_file": "README.md",
-      "source_location": "L41"
+      "source_location": "L42"
     },
     {
       "id": "readme_osi_7_layer_interactive_protocol_suite",
@@ -693,7 +693,7 @@
       "node_kind": "heading",
       "norm_label": "\ud83d\ude80 running locally",
       "source_file": "README.md",
-      "source_location": "L29"
+      "source_location": "L30"
     },
     {
       "id": "readme_suite_capabilities",
@@ -1295,18 +1295,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
       "source": "readme_osi_7_layer_interactive_protocol_suite",
-      "target": "readme_documentation",
+      "target": "readme_documentation_academic_sources",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L41",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -1720,5 +1720,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "653b7153165621839edd3fcfe9004716fd8f1e09"
+  "built_at_commit": "a74b6d0382713230a83852ac0beb4be7f8328700"
 }
