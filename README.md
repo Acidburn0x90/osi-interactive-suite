@@ -20,12 +20,13 @@ A comprehensive, zero-dependency educational laboratory and reference applicatio
    - L2 Data Link Frame with FCS CRC-32 Trailer
    - L1 Physical bitstream serialization
    - Full reverse decapsulation and verification
-4. **TCP 3-Way Handshake & Teardown Simulator:** Sequence/Ack tracking, SYN/ACK/FIN flag inspection, and socket state machine transitions.
-5. **Subnet & IPv6 EUI-64 Calculators:** CIDR calculations, RFC 1918 scope identification, and EUI-64 link-local address generation with 7th-bit inversion.
-6. **CSCI 250 CLI Diagnostics Terminal:** In-browser terminal simulating `ping`, `ifconfig`, `ip a`, `ipconfig /all`, `nslookup`, `dig`, `arp -a`, `ss`, `netstat`, `traceroute`, `curl`, `openssl s_client`, `dhclient -v`, and `ssh`.
-7. **30-Question Assessment Quiz:** Interactive quiz bank curated from curriculum homeworks, lab assignments, and exam review guides.
-8. **Academic Sources & Standards Bibliography:** Dedicated index and standalone printable document (`sources.html`) citing standard textbooks (Kurose & Ross, Tanenbaum, Stevens & Fall) and authoritative IETF RFC / IEEE standards.
-9. **Publication-Grade 11-Chapter Guide (PDF):** Standalone printable reference guide (`OSI_Complete_7_Layer_Guide.pdf`).
+4. **Full Frame Anatomy & Architectural Summary:** Interactive on-wire Ethernet II frame buffer visualizer displaying all 7 layers nested from Physical Preamble to FCS CRC-32 Trailer. Features real-world scenario presets (HTTPS, DNS, HTTP/3/QUIC, ICMP Ping, ARP + 18B padding), live wire metric gauges (wire footprint, payload ratio, MTU usage, 64-byte minimum frame constraint), field dissections, hex dumps, and cross-suite jump navigation.
+5. **TCP 3-Way Handshake & Teardown Simulator:** Sequence/Ack tracking, SYN/ACK/FIN flag inspection, and socket state machine transitions.
+6. **Subnet & IPv6 EUI-64 Calculators:** CIDR calculations, RFC 1918 scope identification, and EUI-64 link-local address generation with 7th-bit inversion.
+7. **CSCI 250 CLI Diagnostics Terminal:** In-browser terminal simulating `ping`, `ifconfig`, `ip a`, `ipconfig /all`, `nslookup`, `dig`, `arp -a`, `ss`, `netstat`, `traceroute`, `curl`, `openssl s_client`, `dhclient -v`, and `ssh`.
+8. **30-Question Assessment Quiz:** Interactive quiz bank curated from curriculum homeworks, lab assignments, and exam review guides.
+9. **Academic Sources & Standards Bibliography:** Dedicated index and standalone printable document (`sources.html`) citing standard textbooks (Kurose & Ross, Tanenbaum, Stevens & Fall) and authoritative IETF RFC / IEEE standards.
+10. **Publication-Grade 11-Chapter Guide (PDF):** Standalone printable reference guide (`OSI_Complete_7_Layer_Guide.pdf`).
 
 ## 🚀 Running Locally
 

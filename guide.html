@@ -139,6 +139,26 @@
     </tbody>
   </table>
 
+  <h3>1.1 Anatomy of a Physical On-Wire Ethernet II Frame</h3>
+  <p>
+    When transmitted across physical media (copper, fiber, or air), the encapsulated data forms a contiguous, linear byte buffer. The diagram below illustrates the exact structural layout of a complete on-wire frame carrying an HTTPS web request:
+  </p>
+  <pre>
+┌──────────────┬────────────────────────┬─────────────────────┬─────────────────┬──────────────┬──────────────────┬──────────────┬──────────────┐
+│ Preamble/SFD │ Ethernet Header        │ IPv4 Header         │ TCP Header      │ TLS 1.3 Rec. │ HTTP Payload     │ FCS Trailer  │ Interpacket  │
+│ 8 Bytes (L1) │ 14 Bytes (L2)          │ 20 Bytes (L3)       │ 20 Bytes (L4)   │ 5 Bytes (L6) │ N Bytes (L7 SDU) │ 4 Bytes (L2) │ Gap 12B (L1) │
+└──────────────┴────────────────────────┴─────────────────────┴─────────────────┴──────────────┴──────────────────┴──────────────┴──────────────┘
+ Wire Octet -8  Byte 0                   Byte 14               Byte 34           Byte 54        Byte 59            Byte 59+N      Wire Post-Frame
+  </pre>
+  <p>
+    <strong>Key Wire Invariants & System Constraints:</strong>
+  </p>
+  <ul>
+    <li><strong>Trailer Exclusivity:</strong> Only Layer 2 uses an FCS trailer. Hardware MAC chips compute the 32-bit CRC in silicon as octets stream across the PHY. Corrupt frames are discarded immediately in hardware before consuming host CPU.</li>
+    <li><strong>Minimum Frame Size Constraint:</strong> IEEE 802.3 CSMA/CD requires a minimum frame length of 64 bytes (excluding Preamble and IPG). If upper layer payload is smaller than 46 bytes (such as a 28-byte ARP packet), the transmitting NIC must inject zero padding.</li>
+    <li><strong>Maximum Transmission Unit (MTU):</strong> Standard Ethernet caps the payload at 1500 bytes. Segments exceeding the MTU require fragmentation or TCP MSS negotiation.</li>
+  </ul>
+
   <!-- Section 2 -->
   <h2>2. Layer 1: Physical Layer Architecture</h2>
   <p>

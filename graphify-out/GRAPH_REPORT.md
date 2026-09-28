@@ -1,16 +1,16 @@
 # Graph Report - osi-interactive-suite  (2026-09-28)
 
 ## Corpus Check
-- 6 files · ~27,524 words
+- 7 files · ~34,418 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 59 nodes · 88 edges · 8 communities (2 shown, 6 thin omitted)
+- 70 nodes · 110 edges · 9 communities (2 shown, 7 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a74b6d03`
+- Built from commit: `bb67e629`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -23,18 +23,19 @@
 - headers-data.js
 - quiz-data.js
 - OSI 7-Layer Interactive Protocol Suite
+- FullFrameVisualizer
 
 ## God Nodes (most connected - your core abstractions)
 1. `PacketSimulator` - 14 edges
-2. `TcpHandshakeSimulator` - 7 edges
-3. `TerminalSimulator` - 7 edges
-4. `NetworkTools` - 6 edges
-5. `OSI 7-Layer Interactive Protocol Suite` - 4 edges
-6. `initHeaderInspector()` - 3 edges
-7. `initNetworkTools()` - 3 edges
-8. `initNavTabs()` - 2 edges
-9. `initLayerExplorer()` - 2 edges
-10. `renderInspector()` - 2 edges
+2. `FullFrameVisualizer` - 10 edges
+3. `TcpHandshakeSimulator` - 7 edges
+4. `TerminalSimulator` - 7 edges
+5. `NetworkTools` - 6 edges
+6. `OSI 7-Layer Interactive Protocol Suite` - 4 edges
+7. `initHeaderInspector()` - 3 edges
+8. `initNetworkTools()` - 3 edges
+9. `initNavTabs()` - 2 edges
+10. `initLayerExplorer()` - 2 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
@@ -42,7 +43,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (8 total, 6 thin omitted)
+## Communities (9 total, 7 thin omitted)
 
 ### Community 0 - "app.js"
 Cohesion: 0.17
@@ -54,15 +55,15 @@ Nodes (4): 📄 Documentation & Academic Sources, OSI 7-Layer Interactive Protoc
 
 ## Knowledge Gaps
 - **6 isolated node(s):** `HEADER_SPECS`, `LAYER_DETAILS`, `QUIZ_QUESTIONS`, `🌟 Suite Capabilities`, `🚀 Running Locally` (+1 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 18 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 20 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `PacketSimulator` connect `PacketSimulator` to `.updateUI`?**
-  _High betweenness centrality (0.065) - this node is a cross-community bridge._
+  _High betweenness centrality (0.046) - this node is a cross-community bridge._
 - **Why does `TerminalSimulator` connect `TerminalSimulator` to `NetworkTools`?**
-  _High betweenness centrality (0.030) - this node is a cross-community bridge._
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
 - **What connects `HEADER_SPECS`, `LAYER_DETAILS`, `QUIZ_QUESTIONS` to the rest of the system?**
   _6 weakly-connected nodes found - possible documentation gaps or missing edges._

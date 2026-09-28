@@ -56,6 +56,19 @@
       "source_location": "L167"
     },
     {
+      "id": "frame_visualizer_fullframevisualizer",
+      "label": "FullFrameVisualizer",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "FullFrameVisualizer",
+      "file_type": "code",
+      "norm_label": "fullframevisualizer",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L7"
+    },
+    {
       "id": "app_initheaderinspector",
       "label": "initHeaderInspector()",
       "_callable": true,
@@ -65,7 +78,7 @@
       "file_type": "code",
       "norm_label": "initheaderinspector()",
       "source_file": "app.js",
-      "source_location": "L463"
+      "source_location": "L467"
     },
     {
       "id": "app_initheaderinspector_renderinspector",
@@ -77,7 +90,7 @@
       "file_type": "code",
       "norm_label": "renderinspector()",
       "source_file": "app.js",
-      "source_location": "L467"
+      "source_location": "L471"
     },
     {
       "id": "app_initheaderinspector_showfielddetail",
@@ -89,7 +102,7 @@
       "file_type": "code",
       "norm_label": "showfielddetail()",
       "source_file": "app.js",
-      "source_location": "L545"
+      "source_location": "L549"
     },
     {
       "id": "app_initlayerexplorer",
@@ -101,7 +114,7 @@
       "file_type": "code",
       "norm_label": "initlayerexplorer()",
       "source_file": "app.js",
-      "source_location": "L79"
+      "source_location": "L83"
     },
     {
       "id": "app_initlayerexplorer_renderlayer",
@@ -113,7 +126,7 @@
       "file_type": "code",
       "norm_label": "renderlayer()",
       "source_file": "app.js",
-      "source_location": "L83"
+      "source_location": "L87"
     },
     {
       "id": "app_initnavtabs",
@@ -125,7 +138,7 @@
       "file_type": "code",
       "norm_label": "initnavtabs()",
       "source_file": "app.js",
-      "source_location": "L33"
+      "source_location": "L37"
     },
     {
       "id": "app_initnavtabs_switchview",
@@ -137,7 +150,7 @@
       "file_type": "code",
       "norm_label": "switchview()",
       "source_file": "app.js",
-      "source_location": "L37"
+      "source_location": "L41"
     },
     {
       "id": "app_initnetworktools",
@@ -149,7 +162,7 @@
       "file_type": "code",
       "norm_label": "initnetworktools()",
       "source_file": "app.js",
-      "source_location": "L613"
+      "source_location": "L617"
     },
     {
       "id": "app_initnetworktools_runcalc",
@@ -161,7 +174,7 @@
       "file_type": "code",
       "norm_label": "runcalc()",
       "source_file": "app.js",
-      "source_location": "L620"
+      "source_location": "L624"
     },
     {
       "id": "app_initnetworktools_runeui",
@@ -173,7 +186,7 @@
       "file_type": "code",
       "norm_label": "runeui()",
       "source_file": "app.js",
-      "source_location": "L673"
+      "source_location": "L677"
     },
     {
       "id": "app_initquiz",
@@ -185,7 +198,7 @@
       "file_type": "code",
       "norm_label": "initquiz()",
       "source_file": "app.js",
-      "source_location": "L707"
+      "source_location": "L711"
     },
     {
       "id": "app_initquiz_renderquestion",
@@ -197,7 +210,19 @@
       "file_type": "code",
       "norm_label": "renderquestion()",
       "source_file": "app.js",
-      "source_location": "L715"
+      "source_location": "L719"
+    },
+    {
+      "id": "simulator_packetsimulator_bindevents",
+      "label": ".bindEvents()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": ".updateUI",
+      "file_type": "code",
+      "norm_label": ".bindevents()",
+      "source_file": "simulator.js",
+      "source_location": "L30"
     },
     {
       "id": "simulator_packetsimulator_init",
@@ -210,6 +235,18 @@
       "norm_label": ".init()",
       "source_file": "simulator.js",
       "source_location": "L25"
+    },
+    {
+      "id": "simulator_packetsimulator_prevstep",
+      "label": ".prevStep()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": ".updateUI",
+      "file_type": "code",
+      "norm_label": ".prevstep()",
+      "source_file": "simulator.js",
+      "source_location": "L83"
     },
     {
       "id": "simulator_tcphandshakesimulator_bindevents",
@@ -284,18 +321,6 @@
       "source_location": "L457"
     },
     {
-      "id": "simulator_packetsimulator_bindevents",
-      "label": ".bindEvents()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "PacketSimulator",
-      "file_type": "code",
-      "norm_label": ".bindevents()",
-      "source_file": "simulator.js",
-      "source_location": "L30"
-    },
-    {
       "id": "simulator_packetsimulator_constructor",
       "label": ".constructor()",
       "_callable": true,
@@ -354,18 +379,6 @@
       "norm_label": ".play()",
       "source_file": "simulator.js",
       "source_location": "L98"
-    },
-    {
-      "id": "simulator_packetsimulator_prevstep",
-      "label": ".prevStep()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "PacketSimulator",
-      "file_type": "code",
-      "norm_label": ".prevstep()",
-      "source_file": "simulator.js",
-      "source_location": "L83"
     },
     {
       "id": "simulator_packetsimulator_renderstage",
@@ -560,6 +573,114 @@
       "source_location": "L206"
     },
     {
+      "id": "frame_visualizer_fullframevisualizer_bindevents",
+      "label": ".bindEvents()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "FullFrameVisualizer",
+      "file_type": "code",
+      "norm_label": ".bindevents()",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L824"
+    },
+    {
+      "id": "frame_visualizer_fullframevisualizer_constructor",
+      "label": ".constructor()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "FullFrameVisualizer",
+      "file_type": "code",
+      "norm_label": ".constructor()",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L8"
+    },
+    {
+      "id": "frame_visualizer_fullframevisualizer_escapehtml",
+      "label": ".escapeHtml()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "FullFrameVisualizer",
+      "file_type": "code",
+      "norm_label": ".escapehtml()",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L814"
+    },
+    {
+      "id": "frame_visualizer_fullframevisualizer_formathexdump",
+      "label": ".formatHexDump()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "FullFrameVisualizer",
+      "file_type": "code",
+      "norm_label": ".formathexdump()",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L1103"
+    },
+    {
+      "id": "frame_visualizer_fullframevisualizer_getsegmentcolorclasses",
+      "label": ".getSegmentColorClasses()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "FullFrameVisualizer",
+      "file_type": "code",
+      "norm_label": ".getsegmentcolorclasses()",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L946"
+    },
+    {
+      "id": "frame_visualizer_fullframevisualizer_init",
+      "label": ".init()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "FullFrameVisualizer",
+      "file_type": "code",
+      "norm_label": ".init()",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L809"
+    },
+    {
+      "id": "frame_visualizer_fullframevisualizer_renderbufferstrip",
+      "label": ".renderBufferStrip()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "FullFrameVisualizer",
+      "file_type": "code",
+      "norm_label": ".renderbufferstrip()",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L909"
+    },
+    {
+      "id": "frame_visualizer_fullframevisualizer_renderscenario",
+      "label": ".renderScenario()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "FullFrameVisualizer",
+      "file_type": "code",
+      "norm_label": ".renderscenario()",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L843"
+    },
+    {
+      "id": "frame_visualizer_fullframevisualizer_rendersegmentdetail",
+      "label": ".renderSegmentDetail()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "FullFrameVisualizer",
+      "file_type": "code",
+      "norm_label": ".rendersegmentdetail()",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L966"
+    },
+    {
       "id": "app",
       "label": "app.js",
       "_origin": "ast",
@@ -574,8 +695,8 @@
       "id": "simulator",
       "label": "simulator.js",
       "_origin": "ast",
-      "community": 1,
-      "community_name": ".updateUI",
+      "community": 2,
+      "community_name": "PacketSimulator",
       "file_type": "code",
       "norm_label": "simulator.js",
       "source_file": "simulator.js",
@@ -669,7 +790,7 @@
       "node_kind": "heading",
       "norm_label": "\ud83d\udcc4 documentation & academic sources",
       "source_file": "README.md",
-      "source_location": "L42"
+      "source_location": "L43"
     },
     {
       "id": "readme_osi_7_layer_interactive_protocol_suite",
@@ -693,7 +814,7 @@
       "node_kind": "heading",
       "norm_label": "\ud83d\ude80 running locally",
       "source_file": "README.md",
-      "source_location": "L30"
+      "source_location": "L31"
     },
     {
       "id": "readme_suite_capabilities",
@@ -706,6 +827,17 @@
       "norm_label": "\ud83c\udf1f suite capabilities",
       "source_file": "README.md",
       "source_location": "L5"
+    },
+    {
+      "id": "frame_visualizer",
+      "label": "frame-visualizer.js",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "FullFrameVisualizer",
+      "file_type": "code",
+      "norm_label": "frame-visualizer.js",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L1"
     }
   ],
   "links": [
@@ -718,7 +850,151 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app.js",
-      "source_location": "L533",
+      "source_location": "L537",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer_bindevents",
+      "target": "frame_visualizer_fullframevisualizer_renderscenario",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L837",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer_formathexdump",
+      "target": "frame_visualizer_fullframevisualizer_escapehtml",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L1108",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer_init",
+      "target": "frame_visualizer_fullframevisualizer_bindevents",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L810",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer_init",
+      "target": "frame_visualizer_fullframevisualizer_renderscenario",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L811",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer_renderbufferstrip",
+      "target": "frame_visualizer_fullframevisualizer_getsegmentcolorclasses",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L917",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer_renderbufferstrip",
+      "target": "frame_visualizer_fullframevisualizer_escapehtml",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L924",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer_renderbufferstrip",
+      "target": "frame_visualizer_fullframevisualizer_rendersegmentdetail",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L939",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer_renderscenario",
+      "target": "frame_visualizer_fullframevisualizer_renderbufferstrip",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L897",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer_renderscenario",
+      "target": "frame_visualizer_fullframevisualizer_rendersegmentdetail",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L905",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer_rendersegmentdetail",
+      "target": "frame_visualizer_fullframevisualizer_formathexdump",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L1065",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer_rendersegmentdetail",
+      "target": "frame_visualizer_fullframevisualizer_getsegmentcolorclasses",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L980",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer_rendersegmentdetail",
+      "target": "frame_visualizer_fullframevisualizer_escapehtml",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frame-visualizer.js",
+      "source_location": "L994",
       "weight": 1.0
     },
     {
@@ -1138,7 +1414,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app.js",
-      "source_location": "L467",
+      "source_location": "L471",
       "weight": 1.0
     },
     {
@@ -1150,7 +1426,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app.js",
-      "source_location": "L83",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
@@ -1162,7 +1438,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app.js",
-      "source_location": "L37",
+      "source_location": "L41",
       "weight": 1.0
     },
     {
@@ -1174,7 +1450,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app.js",
-      "source_location": "L715",
+      "source_location": "L719",
       "weight": 1.0
     },
     {
@@ -1185,7 +1461,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app.js",
-      "source_location": "L33",
+      "source_location": "L37",
       "weight": 1.0
     },
     {
@@ -1196,7 +1472,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app.js",
-      "source_location": "L463",
+      "source_location": "L467",
       "weight": 1.0
     },
     {
@@ -1207,7 +1483,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app.js",
-      "source_location": "L613",
+      "source_location": "L617",
       "weight": 1.0
     },
     {
@@ -1218,7 +1494,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app.js",
-      "source_location": "L707",
+      "source_location": "L711",
       "weight": 1.0
     },
     {
@@ -1229,7 +1505,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app.js",
-      "source_location": "L79",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -1240,7 +1516,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app.js",
-      "source_location": "L545",
+      "source_location": "L549",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer",
+      "target": "frame_visualizer_fullframevisualizer",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frame-visualizer.js",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -1295,7 +1582,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -1306,7 +1593,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L42",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -1362,6 +1649,105 @@
       "confidence_score": 1.0,
       "source_file": "tools.js",
       "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer",
+      "target": "frame_visualizer_fullframevisualizer_formathexdump",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frame-visualizer.js",
+      "source_location": "L1103",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer",
+      "target": "frame_visualizer_fullframevisualizer_constructor",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frame-visualizer.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer",
+      "target": "frame_visualizer_fullframevisualizer_init",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frame-visualizer.js",
+      "source_location": "L809",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer",
+      "target": "frame_visualizer_fullframevisualizer_escapehtml",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frame-visualizer.js",
+      "source_location": "L814",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer",
+      "target": "frame_visualizer_fullframevisualizer_bindevents",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frame-visualizer.js",
+      "source_location": "L824",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer",
+      "target": "frame_visualizer_fullframevisualizer_renderscenario",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frame-visualizer.js",
+      "source_location": "L843",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer",
+      "target": "frame_visualizer_fullframevisualizer_renderbufferstrip",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frame-visualizer.js",
+      "source_location": "L909",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer",
+      "target": "frame_visualizer_fullframevisualizer_getsegmentcolorclasses",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frame-visualizer.js",
+      "source_location": "L946",
+      "weight": 1.0
+    },
+    {
+      "source": "frame_visualizer_fullframevisualizer",
+      "target": "frame_visualizer_fullframevisualizer_rendersegmentdetail",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frame-visualizer.js",
+      "source_location": "L966",
       "weight": 1.0
     },
     {
@@ -1703,7 +2089,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "app.js",
-      "source_location": "L666",
+      "source_location": "L670",
       "weight": 1.0
     },
     {
@@ -1715,10 +2101,10 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "app.js",
-      "source_location": "L700",
+      "source_location": "L704",
       "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a74b6d0382713230a83852ac0beb4be7f8328700"
+  "built_at_commit": "bb67e6297ecd0747c3a0e1523b8eaef8c825b555"
 }

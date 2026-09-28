@@ -19,6 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const tcpSim = new TcpHandshakeSimulator();
   tcpSim.init();
 
+  // Initialize Full Frame Visualizer & Summary
+  const frameVis = new FullFrameVisualizer();
+  frameVis.init();
+
   // Initialize Tools
   initNetworkTools();
 

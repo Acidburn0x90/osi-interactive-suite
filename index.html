@@ -37,6 +37,9 @@
         <button class="nav-tab-btn px-3 py-1.5 rounded-lg border border-transparent text-slate-400 hover:text-slate-200 transition" data-target="view-encapsulation">
           Encapsulation Pipeline
         </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-lg border border-transparent text-slate-400 hover:text-slate-200 transition" data-target="view-frame">
+          Full Frame Anatomy & Summary
+        </button>
         <button class="nav-tab-btn px-3 py-1.5 rounded-lg border border-transparent text-slate-400 hover:text-slate-200 transition" data-target="view-handshake">
           TCP Handshake Simulator
         </button>
@@ -193,12 +196,193 @@
 
       <!-- Explanation Box -->
       <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-xs text-slate-300">
-        <strong class="text-white block mb-1">Encapsulation Analysis:</strong>
+        <div class="flex items-center justify-between mb-1">
+          <strong class="text-white block">Encapsulation Analysis:</strong>
+          <a href="#view-frame" class="text-indigo-400 hover:underline flex items-center gap-1 font-mono text-[11px]">
+            <span>View Assembled Wire Buffer</span> ➔
+          </a>
+        </div>
         <div id="sim-explanation-text"></div>
       </div>
     </section>
 
-    <!-- VIEW 4: TCP Handshake Simulator -->
+    <!-- VIEW 4: Full Frame Anatomy & Architectural Summary -->
+    <section id="view-frame" class="view-section hidden">
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold text-white tracking-tight">Full Frame Anatomy & Architectural Synthesis</h2>
+          <p class="text-xs text-slate-400 mt-1 max-w-3xl leading-relaxed">
+            The Complete On-Wire Buffer: Inspect an entire physical Ethernet II frame containing all 7 OSI layers nested end-to-end. Click any segment to dissect its bitfields, hardware responsibilities, raw wire octets, and jump directly to specialized labs across the suite.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+            Interactive Wire Dissector
+          </span>
+        </div>
+      </div>
+
+      <!-- Real-World Scenario Presets Selector -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 mb-6 shadow-xl">
+        <div class="flex items-center justify-between gap-3 mb-3">
+          <span class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+            Real-World Frame Scenarios (Preset Protocols)
+          </span>
+          <span class="text-[11px] font-mono text-slate-500">Select scenario to reconfigure wire frame</span>
+        </div>
+        <div class="flex flex-wrap gap-2" id="frame-scenario-selector">
+          <button class="frame-scenario-btn active px-3.5 py-2 rounded-xl text-xs font-semibold border border-indigo-500 bg-indigo-950/60 text-white transition shadow-sm" data-scenario="https">
+            🌐 HTTPS Web Request (TLS 1.3 / TCP / IPv4)
+          </button>
+          <button class="frame-scenario-btn px-3.5 py-2 rounded-xl text-xs font-semibold border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-white transition" data-scenario="dns">
+            🔍 DNS Query (UDP / IPv4)
+          </button>
+          <button class="frame-scenario-btn px-3.5 py-2 rounded-xl text-xs font-semibold border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-white transition" data-scenario="http3">
+            ⚡ HTTP/3 over QUIC (UDP / IPv6)
+          </button>
+          <button class="frame-scenario-btn px-3.5 py-2 rounded-xl text-xs font-semibold border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-white transition" data-scenario="icmp">
+            📡 ICMP Ping Echo (IPv4)
+          </button>
+          <button class="frame-scenario-btn px-3.5 py-2 rounded-xl text-xs font-semibold border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-white transition" data-scenario="arp">
+            🏷️ ARP Request + Padding (Layer 2)
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Frame Metric Scoreboard -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-6">
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 shadow-md">
+          <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider block mb-0.5">Total Wire Size</span>
+          <span id="frame-metric-wire" class="text-base font-bold font-mono text-white">--</span>
+          <span class="text-[10px] text-slate-500 block mt-0.5">Includes L1 Preamble & IPG</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 shadow-md">
+          <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider block mb-0.5">Ethernet Frame</span>
+          <span id="frame-metric-frame" class="text-base font-bold font-mono text-emerald-400">--</span>
+          <span class="text-[10px] text-slate-500 block mt-0.5">L2 Header + Payload + FCS</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 shadow-md">
+          <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider block mb-0.5">Payload Ratio</span>
+          <span id="frame-metric-efficiency" class="text-base font-bold font-mono text-indigo-400">--</span>
+          <span class="text-[10px] text-slate-500 block mt-0.5">L7 User Data / Frame</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 shadow-md">
+          <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider block mb-0.5">MTU Utilization</span>
+          <span id="frame-metric-mtu" class="text-base font-bold font-mono text-amber-400">--</span>
+          <span class="text-[10px] text-slate-500 block mt-0.5">Max 1500B Ethernet MTU</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 shadow-md">
+          <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider block mb-0.5">802.3 Constraint</span>
+          <span id="frame-metric-rule" class="text-xs font-mono text-slate-300 block mt-1">--</span>
+          <span class="text-[10px] text-slate-500 block mt-0.5">≥64-Byte Slot Time Rule</span>
+        </div>
+      </div>
+
+      <!-- Main Visual: The Unified Wire Frame Buffer Strip -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-6 shadow-2xl">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div>
+            <h3 id="frame-scenario-title" class="text-base font-bold text-white tracking-tight">--</h3>
+            <p id="frame-scenario-desc" class="text-xs text-slate-400 mt-0.5 leading-relaxed">--</p>
+          </div>
+          <span class="text-[11px] font-mono text-indigo-400 bg-indigo-950/40 px-2.5 py-1 rounded-lg border border-indigo-500/20">
+            Click any block to dissect ➔
+          </span>
+        </div>
+
+        <!-- Wire Frame Strip Container -->
+        <div class="mt-4 pt-3 border-t border-slate-800">
+          <div class="text-[11px] font-mono text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between">
+            <span>Transmission Direction: Left (First on wire) ➔ Right (Last on wire)</span>
+            <span>All 7 Layers Assembled</span>
+          </div>
+
+          <!-- Live Dynamic Multi-Segment Wire Strip -->
+          <div id="frame-wire-strip" class="frame-wire-container">
+            <!-- Dynamically populated by FullFrameVisualizer -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Segment Detail Card & Cross-Suite Jump Hub -->
+      <div id="frame-segment-detail" class="mb-8">
+        <!-- Dynamically populated by FullFrameVisualizer -->
+      </div>
+
+      <!-- Site-Wide High-Level Summary: Ingress, Egress & Device Inspection Matrix -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+        <div class="mb-4">
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            Architectural Synthesis: Network Devices & Stack Traversal
+          </h3>
+          <p class="text-xs text-slate-400 mt-1">
+            How hardware devices across the Internet inspect, modify, or strip specific segments of this physical wire frame:
+          </p>
+        </div>
+
+        <div class="overflow-x-auto text-xs">
+          <table class="w-full text-left text-slate-300 border-collapse">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400 font-mono text-[11px] uppercase">
+                <th class="py-2.5 px-3">Network Entity</th>
+                <th class="py-2.5 px-3">Primary Layer</th>
+                <th class="py-2.5 px-3">Segments Inspected / Altered</th>
+                <th class="py-2.5 px-3">Action Taken on Frame</th>
+                <th class="py-2.5 px-3">Suite Tool</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 font-sans">
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-2 px-3 font-bold text-purple-300">Physical Transceiver (PHY / Hub)</td>
+                <td class="py-2 px-3 font-mono text-purple-400">Layer 1 (Physical)</td>
+                <td class="py-2 px-3 font-mono text-slate-400">Preamble, SFD, IPG</td>
+                <td class="py-2 px-3 text-slate-300">Locks clock frequency via preamble; regenerates voltages or optical pulses. Blind to frame boundaries.</td>
+                <td class="py-2 px-3"><a href="#view-layers" class="text-indigo-400 hover:underline">Layer 1 Explorer</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-2 px-3 font-bold text-emerald-300">Layer 2 Switch (Bridge)</td>
+                <td class="py-2 px-3 font-mono text-emerald-400">Layer 2 (Data Link)</td>
+                <td class="py-2 px-3 font-mono text-slate-400">Ethernet Header (MACs)</td>
+                <td class="py-2 px-3 text-slate-300">Reads Destination MAC, looks up CAM forwarding table, outputs to designated port. Never modifies L3-L7 data.</td>
+                <td class="py-2 px-3"><a href="#view-headers" class="text-indigo-400 hover:underline">Ethernet II Inspector</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-2 px-3 font-bold text-sky-300">Layer 3 Router (Gateway)</td>
+                <td class="py-2 px-3 font-mono text-sky-400">Layer 3 (Network)</td>
+                <td class="py-2 px-3 font-mono text-slate-400">Strips L2; alters IPv4/IPv6 TTL</td>
+                <td class="py-2 px-3 text-slate-300">Strips incoming L2 header/FCS. Decrements TTL/Hop Limit, consults routing table (CIDR), prepends brand-new L2 header & FCS for next hop.</td>
+                <td class="py-2 px-3"><a href="#view-tools" class="text-indigo-400 hover:underline">Subnet & EUI-64 Tools</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-2 px-3 font-bold text-amber-300">Firewall / Kernel TCP/IP</td>
+                <td class="py-2 px-3 font-mono text-amber-400">Layer 4 (Transport)</td>
+                <td class="py-2 px-3 font-mono text-slate-400">TCP / UDP Ports, Flags, Seq</td>
+                <td class="py-2 px-3 text-slate-300">Demultiplexes payload to destination socket (IP:Port); enforces connection state machine, sliding windows, and retransmission.</td>
+                <td class="py-2 px-3"><a href="#view-handshake" class="text-indigo-400 hover:underline">TCP Handshake Sim</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-2 px-3 font-bold text-teal-300">TLS Encryption Engine</td>
+                <td class="py-2 px-3 font-mono text-teal-400">Layers 5 & 6 (Session & Pres.)</td>
+                <td class="py-2 px-3 font-mono text-slate-400">TLS Record, AEAD Ciphertext</td>
+                <td class="py-2 px-3 text-slate-300">Authenticates cryptographic certificates, converts Network Byte Order (Big-Endian), and decrypts payload into plaintext.</td>
+                <td class="py-2 px-3"><a href="#view-headers" class="text-indigo-400 hover:underline">TLS 1.3 Inspector</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-2 px-3 font-bold text-indigo-300">Application Daemon (Web/DNS)</td>
+                <td class="py-2 px-3 font-mono text-indigo-400">Layer 7 (Application)</td>
+                <td class="py-2 px-3 font-mono text-slate-400">Application Payload (SDU)</td>
+                <td class="py-2 px-3 text-slate-300">Executes business logic (HTTP GET, DNS query, SMTP mail), processes request, and formats outgoing reply.</td>
+                <td class="py-2 px-3"><a href="#view-terminal" class="text-indigo-400 hover:underline">CLI Terminal Lab</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: TCP Handshake Simulator -->
     <section id="view-handshake" class="view-section hidden">
       <div class="mb-6">
         <h2 class="text-2xl font-bold text-white">TCP 3-Way Handshake & Teardown State Machine</h2>
@@ -254,7 +438,7 @@
       </div>
     </section>
 
-    <!-- VIEW 5: Subnet & EUI-64 Tools -->
+    <!-- VIEW 6: Subnet & EUI-64 Tools -->
     <section id="view-tools" class="view-section hidden">
       <div class="mb-6">
         <h2 class="text-2xl font-bold text-white">Network Addressing & Subnet Toolkit</h2>
@@ -300,7 +484,7 @@
       </div>
     </section>
 
-    <!-- VIEW 6: CLI Diagnostic Terminal -->
+    <!-- VIEW 7: CLI Diagnostic Terminal -->
     <section id="view-terminal" class="view-section hidden">
       <div class="mb-4">
         <h2 class="text-2xl font-bold text-white">CSCI 250 CLI Network Diagnostics Terminal</h2>
@@ -327,7 +511,7 @@
       </div>
     </section>
 
-    <!-- VIEW 7: Exam Prep Quiz -->
+    <!-- VIEW 8: Exam Prep Quiz -->
     <section id="view-quiz" class="view-section hidden">
       <div class="mb-6">
         <h2 class="text-2xl font-bold text-white">CSCI 250 Exam Prep Assessment</h2>
@@ -339,7 +523,7 @@
       </div>
     </section>
 
-    <!-- VIEW 8: Academic Sources & Standards Reference -->
+    <!-- VIEW 9: Academic Sources & Standards Reference -->
     <section id="view-sources" class="view-section hidden">
       <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
         <div>
@@ -486,6 +670,7 @@
   <script src="headers-data.js"></script>
   <script src="quiz-data.js"></script>
   <script src="simulator.js"></script>
+  <script src="frame-visualizer.js"></script>
   <script src="tools.js"></script>
   <script src="app.js"></script>
 </body>

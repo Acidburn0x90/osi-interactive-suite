@@ -551,3 +551,52 @@ code, kbd, samp, pre {
   font-size: 0.75rem;
   margin-left: 0.5rem;
 }
+
+/* Full Frame Visualizer Styles */
+.frame-segment-block {
+  min-width: 95px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.frame-segment-block:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.frame-segment-block.ring-2 {
+  --ring-color: #818cf8;
+  box-shadow: 0 0 0 2px var(--ring-color), 0 10px 25px -5px rgba(99, 102, 241, 0.3) !important;
+  transform: translateY(-2px);
+}
+
+.frame-wire-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #334155 #0f172a;
+}
+
+.frame-wire-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.frame-wire-container::-webkit-scrollbar-track {
+  background: #0f172a;
+  border-radius: 9999px;
+}
+
+.frame-wire-container::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 9999px;
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
