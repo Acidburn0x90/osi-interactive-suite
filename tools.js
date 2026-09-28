@@ -238,6 +238,10 @@ class TerminalSimulator {
   <span class="text-emerald-400">arp -a</span>               - Displays Layer 2 to Layer 3 address resolution table
   <span class="text-emerald-400">netstat -tuln</span> / <span class="text-emerald-400">ss</span>   - Lists active listening TCP/UDP sockets and ports
   <span class="text-emerald-400">traceroute &lt;target&gt;</span>   - Traces hop-by-hop L3 path using TTL expiration
+  <span class="text-emerald-400">curl [-I] &lt;url&gt;</span>      - Tests Layer 7 HTTP/2 response & TLS 1.3 headers
+  <span class="text-emerald-400">openssl s_client</span>     - Inspects Layer 6 TLS certificates, cipher suites & AEAD
+  <span class="text-emerald-400">dhclient -v</span>          - Traces Layer 7 DHCP DORA 4-way transaction
+  <span class="text-emerald-400">ssh &lt;host&gt;</span>           - Simulates encrypted Layer 7 interactive session
   <span class="text-emerald-400">clear</span>                - Clears terminal output
         `);
         break;
@@ -449,6 +453,105 @@ traceroute to ${this.escapeHtml(trHost)} (${trHost}), 30 hops max, 60 byte packe
  3  96.120.10.45 (96.120.10.45)  11.230 ms  10.984 ms  11.450 ms
  4  one.one.one.one (1.1.1.1)  13.412 ms  13.120 ms  13.088 ms
 <span class="text-slate-400">[Path discovery mechanism: Sends packets starting at TTL=1, incrementing by 1. Each router decrements TTL to 0 and returns ICMP Type 11 (Time Exceeded).]</span>
+        `);
+        break;
+
+      case "curl":
+        const curlUrl = arg || "https://bigbois.live";
+        this.appendOutput(`
+* Connected to ${this.escapeHtml(curlUrl)} (142.250.190.46) port 443
+* ALPN: offers h2,http/1.1
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* Using HTTP2, server supports multiplexing
+&gt; GET /index.html HTTP/2
+&gt; Host: ${this.escapeHtml(curlUrl.replace(/^https?:\/\//, ""))}
+&gt; User-Agent: curl/8.5.0
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/2 200 
+&lt; content-type: text/html; charset=UTF-8
+&lt; content-length: 12584
+&lt; date: Mon, 28 Sep 2026 12:00:00 GMT
+&lt; server: cloudflare
+&lt; alt-svc: h3=":443"; ma=86400
+&lt; 
+&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;...&lt;/head&gt;&lt;body&gt;...&lt;/body&gt;&lt;/html&gt;
+<span class="text-slate-400">[Layer 7 HTTP/2 Request completed over Layer 6 TLS 1.3 presentation record layer.]</span>
+        `);
+        break;
+
+      case "openssl":
+        this.appendOutput(`
+CONNECTED(00000003)
+---
+Certificate chain
+ 0 s:CN = *.google.com
+   i:C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+   a:PKEY: id-ecPublicKey, 256 (bit); sigalg: ecdsa-with-SHA256
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIICljCCAX6gAwIBAgIRAIzXh9... [DER/ASN.1 X.509 Certificate]
+-----END CERTIFICATE-----
+subject=CN = *.google.com
+issuer=C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: ECDSA
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 3450 bytes and written 390 bytes
+Verification: OK
+---
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+Server public key is 256 bit
+Secure Renegotiation IS NOT supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 0 (ok)
+---
+<span class="text-slate-400">[Layer 6 Presentation Security: Authenticated with ECDSA, encrypted via AES-256-GCM.]</span>
+        `);
+        break;
+
+      case "dhclient":
+        this.appendOutput(`
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Listening on LPF/eth0/3c:52:82:11:22:33
+Sending on   LPF/eth0/3c:52:82:11:22:33
+Sending on   Socket/fallback
+<span class="text-indigo-400 font-bold">DHCPDISCOVER</span> on eth0 to 255.255.255.255 port 67 interval 3
+<span class="text-emerald-400 font-bold">DHCPOFFER</span> of 192.168.1.105 from 192.168.1.1
+<span class="text-amber-400 font-bold">DHCPREQUEST</span> for 192.168.1.105 on eth0 to 255.255.255.255 port 67
+<span class="text-sky-400 font-bold">DHCPACK</span> of 192.168.1.105 from 192.168.1.1
+bound to 192.168.1.105 -- renewal in 43200 seconds.
+<span class="text-slate-400">[Completed DHCP DORA 4-Way Handshake via UDP Ports 68 (Client) &amp; 67 (Server).]</span>
+        `);
+        break;
+
+      case "ssh":
+        const sshHost = arg || "student@csci250-lab";
+        this.appendOutput(`
+OpenSSH_9.6p1, OpenSSL 3.2.1 30 Jan 2024
+debug1: Connecting to ${this.escapeHtml(sshHost)} [192.168.1.1] port 22.
+debug1: Connection established.
+debug1: Remote protocol version 2.0, remote software version OpenSSH_9.3
+debug1: match: OpenSSH_9.3 pat OpenSSH* compat 0x04000000
+debug1: Authenticating using publickey (ED25519)
+debug1: Authentication succeeded (publickey).
+Authenticated to ${this.escapeHtml(sshHost)} ([192.168.1.1]:22).
+Linux csci250-gateway 6.6.10-arch1 #1 SMP PREEMPT_DYNAMIC x86_64
+Welcome to CSCI 250 Lab Router Gateway. Session established.
+<span class="text-slate-400">[Encrypted L7 session established over TCP port 22 with ED25519 key exchange.]</span>
         `);
         break;
 

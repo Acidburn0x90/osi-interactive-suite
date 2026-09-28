@@ -263,5 +263,136 @@ const QUIZ_QUESTIONS = [
     ],
     answer: 1,
     explanation: "IPv6 completely eliminates broadcast addressing and ARP. Neighbor discovery, address resolution, and router advertisements are handled by NDP (Neighbor Discovery Protocol) running over ICMPv6 multicast."
+  },
+  {
+    id: 21,
+    layer: 5,
+    question: "At Layer 5 (Session Layer), what is the operational difference between half-duplex and full-duplex communication dialogues?",
+    options: [
+      "Half-duplex uses optical fiber, while full-duplex uses copper cabling",
+      "In half-duplex, both parties can transmit but only one direction at a time; in full-duplex, both parties can transmit and receive simultaneously",
+      "Half-duplex requires 64-bit encryption, while full-duplex is unencrypted",
+      "Half-duplex is connectionless, while full-duplex is connection-oriented"
+    ],
+    answer: 1,
+    explanation: "Half-duplex allows bidirectional transmission but only sequentially (parties take turns, often coordinated by software tokens or carrier sense). Full-duplex allows simultaneous bidirectional transmission over dedicated separate channels."
+  },
+  {
+    id: 22,
+    layer: 5,
+    question: "In OSI Layer 5 session management, what role do Major and Minor Synchronization Points (checkpoints) serve during large file transfers or database transactions?",
+    options: [
+      "They encrypt the data packets to prevent eavesdropping",
+      "They compress the payload into gzip format",
+      "They allow the transfer to recover and resume from the last established checkpoint after a network disruption rather than restarting from the beginning",
+      "They convert host byte order into network byte order"
+    ],
+    answer: 2,
+    explanation: "Session layer checkpoints divide a long dialogue into verifiable sections. If a crash or line disconnect occurs, endpoints can roll back and retransmit only from the most recent checkpoint instead of starting the entire transfer over."
+  },
+  {
+    id: 23,
+    layer: 6,
+    question: "Which OSI layer is responsible for translating between Abstract Syntax (internal data structures like C structs or JSON models) and Transfer Syntax (wire-level byte encodings like ASN.1 BER/DER or Protocol Buffers)?",
+    options: [
+      "Layer 4 (Transport Layer)",
+      "Layer 5 (Session Layer)",
+      "Layer 6 (Presentation Layer)",
+      "Layer 7 (Application Layer)"
+    ],
+    answer: 2,
+    explanation: "Layer 6 (Presentation Layer) standardizes data syntax and representation. It negotiates the Transfer Syntax (e.g., ASN.1 DER, canonical XDR, protobuf bytes) used across the wire to decouple heterogeneous operating systems and architectures from differing internal memory layouts."
+  },
+  {
+    id: 24,
+    layer: 6,
+    question: "Standard Network Byte Order for multi-byte binary fields (such as TCP/UDP port numbers and IPv4 addresses) is strictly defined as which endianness?",
+    options: [
+      "Little-Endian (Least Significant Byte first)",
+      "Big-Endian (Most Significant Byte first)",
+      "Middle-Endian (Mixed Byte ordering)",
+      "Dynamic-Endian (Negotiated per packet in the IP header)"
+    ],
+    answer: 1,
+    explanation: "RFC 1700 mandates Big-Endian as Network Byte Order (the most significant byte is transmitted and stored at the lowest memory address first). x86_64 host systems are Little-Endian, requiring conversion via standard C library functions htons(), htonl(), ntohs(), and ntohl()."
+  },
+  {
+    id: 25,
+    layer: 6,
+    question: "In the TLS 1.3 architecture, which component functions as the Presentation envelope responsible for encapsulating, encrypting, and tagging application data with an Authenticated Encryption with Associated Data (AEAD) cipher?",
+    options: [
+      "TLS Handshake Protocol",
+      "TLS Record Layer",
+      "TCP Sliding Window",
+      "IPsec AH Header"
+    ],
+    answer: 1,
+    explanation: "The TLS Record Layer acts at Layer 6 to fragment, encrypt, and authenticate application data using AEAD algorithms (e.g. AES-GCM or ChaCha20-Poly1305), prepending a 5-byte plaintext record header and appending an authentication tag."
+  },
+  {
+    id: 26,
+    layer: 7,
+    question: "How does HTTP/2 solve the Head-of-Line (HoL) blocking problem present in HTTP/1.1 pipelining?",
+    options: [
+      "By switching from TCP to UDP as its underlying transport",
+      "By introducing binary framing with multiplexed streams, allowing interleaved concurrent requests and responses over a single TCP connection",
+      "By restricting HTTP requests to a maximum of 1460 bytes",
+      "By caching all assets on the client's local hard drive"
+    ],
+    answer: 1,
+    explanation: "HTTP/1.1 forced requests on a connection to complete sequentially in strict FIFO order. HTTP/2 introduces a binary framing layer that breaks messages into discrete frames tagged with Stream IDs, interleaving multiple bidirectional streams over a single shared TCP socket without blocking."
+  },
+  {
+    id: 27,
+    layer: 7,
+    question: "Why did HTTP/3 replace TCP with the QUIC protocol running on top of UDP at the transport layer?",
+    options: [
+      "Because UDP does not require any operating system drivers",
+      "To eliminate TCP-level Head-of-Line blocking (where one lost packet stalls all streams) and achieve 0-RTT connection resumption with integrated TLS 1.3 encryption",
+      "Because TCP sequence numbers were limited to 8 bits",
+      "To allow unencrypted transmission across public Wi-Fi hotspots"
+    ],
+    answer: 1,
+    explanation: "In HTTP/2 over TCP, if a single TCP packet is dropped, the TCP receiver stalls ALL multiplexed streams until that segment is retransmitted. QUIC runs over UDP and manages independent stream loss recovery, so packet loss on one stream does not pause any other stream."
+  },
+  {
+    id: 28,
+    layer: 7,
+    question: "When a recursive DNS resolver queries nameservers to resolve 'mail.example.com', what is the correct hierarchical order of query delegations?",
+    options: [
+      "Local Host Cache → Authoritative Nameserver → TLD Nameserver → Root Nameserver",
+      "Root Nameserver ('.') → Top-Level Domain (TLD) Nameserver ('.com') → Authoritative Nameserver ('example.com')",
+      "DHCP Server → Gateway Router → ISP Proxy → ICANN Web Server",
+      "WINS Server → NetBIOS Master Browser → Root Server"
+    ],
+    answer: 1,
+    explanation: "Iterative DNS resolution starts at the 13 Root nameserver clusters ('.'), which delegate to the TLD servers responsible for the domain extension ('.com'), which in turn delegate to the domain's Authoritative Nameservers holding the actual A/AAAA record."
+  },
+  {
+    id: 29,
+    layer: 7,
+    question: "What are the four sequential messages exchanged between a client and a DHCP server during initial IP address leasing (the DORA process)?",
+    options: [
+      "Detect, Open, Receive, Authorize",
+      "Discover, Offer, Request, Acknowledge",
+      "Dial, Operate, Route, Authenticate",
+      "Download, Organize, Resolve, Allocate"
+    ],
+    answer: 1,
+    explanation: "DHCP uses the DORA process over UDP ports 67 (server) and 68 (client): 1. Discover (client broadcast), 2. Offer (server unicast/broadcast), 3. Request (client formal request broadcast), 4. Acknowledge (server ACK with lease parameters)."
+  },
+  {
+    id: 30,
+    layer: 7,
+    question: "In Internet email architecture, which protocol is used by Mail Transfer Agents (MTAs) to push mail between servers, and which protocol is used by end-user Mail User Agents (MUAs) to pull and synchronize multiple server folders?",
+    options: [
+      "Push: POP3; Pull: SMTP",
+      "Push: SMTP; Pull: IMAP",
+      "Push: HTTP; Pull: FTP",
+      "Push: SNMP; Pull: ICMP"
+    ],
+    answer: 1,
+    explanation: "SMTP (Simple Mail Transfer Protocol, TCP 25/587) is a push protocol used by clients to submit outgoing mail and between MTAs to relay messages. IMAP (Internet Message Access Protocol, TCP 143/993) is a pull protocol allowing clients to manage and synchronize folders directly on the mail server."
   }
 ];
+

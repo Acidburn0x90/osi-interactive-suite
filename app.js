@@ -273,6 +273,144 @@ function initLayerExplorer() {
           </div>
         </div>
       `;
+    } else if (layerNum === 5) {
+      subHtml = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+          <div class="bg-slate-900/80 border border-rose-500/30 rounded-xl p-5 shadow-lg">
+            <h4 class="text-sm font-bold text-rose-400 uppercase tracking-wider mb-2">Dialogue Transmission Modes</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">Controls the transmission directionality and turn-taking rules across endpoints.</p>
+            <div class="space-y-2">
+              ${l.deepDive.dialogueModes.map(d => `
+                <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800 text-xs">
+                  <div class="font-bold text-rose-300">${d.mode}</div>
+                  <div class="text-slate-400 mt-0.5">${d.description}</div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+          <div class="bg-slate-900/80 border border-rose-500/30 rounded-xl p-5 shadow-lg">
+            <h4 class="text-sm font-bold text-rose-400 uppercase tracking-wider mb-2">Checkpoint Synchronization & Token Control</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">${l.deepDive.checkpoints}</p>
+            <div class="p-3 bg-rose-950/30 border border-rose-500/30 rounded-lg text-xs text-rose-200 mb-3">
+              <strong class="text-rose-300 block mb-1">★ Software Token Management:</strong>
+              ${l.deepDive.tokenManagement}
+            </div>
+            <div class="text-xs text-slate-300">
+              <strong class="text-rose-300">Modern Internet Evolution:</strong>
+              <div class="text-slate-400 text-xs mt-1">${l.deepDive.modernRelevance}</div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 bg-slate-900/80 border border-rose-500/30 rounded-xl p-4 shadow-lg">
+          <h4 class="text-sm font-bold text-rose-400 uppercase tracking-wider mb-2">Primary Session Layer Protocols</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            ${l.deepDive.keyProtocols.map(p => `
+              <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800 text-xs">
+                <span class="font-bold text-white">${p.name}:</span>
+                <span class="text-slate-400 ml-1">${p.role}</span>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    } else if (layerNum === 6) {
+      subHtml = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+          <div class="bg-slate-900/80 border border-teal-500/30 rounded-xl p-5 shadow-lg">
+            <h4 class="text-sm font-bold text-teal-400 uppercase tracking-wider mb-2">Abstract vs. Transfer Syntax</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">${l.deepDive.syntaxConcepts}</p>
+            <div class="p-3 bg-teal-950/30 border border-teal-500/30 rounded-lg text-xs text-teal-200 mb-3">
+              <strong class="text-teal-300 block mb-1">★ Endianness & Network Byte Order:</strong>
+              ${l.deepDive.endianness}
+            </div>
+            <div class="text-xs text-slate-300">
+              <strong class="text-teal-300">Character Set Standardization:</strong>
+              <div class="text-slate-400 text-xs mt-1">${l.deepDive.characterEncoding}</div>
+            </div>
+          </div>
+          <div class="bg-slate-900/80 border border-teal-500/30 rounded-xl p-5 shadow-lg">
+            <h4 class="text-sm font-bold text-teal-400 uppercase tracking-wider mb-2">Data Serialization & Encoding Comparison</h4>
+            <div class="overflow-x-auto text-xs">
+              <table class="w-full text-left text-slate-300 border-collapse">
+                <thead>
+                  <tr class="border-b border-slate-700 text-teal-400">
+                    <th class="py-1">Format</th>
+                    <th class="py-1">Encoding</th>
+                    <th class="py-1">Efficiency</th>
+                    <th class="py-1">Use Case</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${l.deepDive.serializationMatrix.map(s => `
+                    <tr class="border-b border-slate-800">
+                      <td class="py-1 font-bold text-white">${s.format}</td>
+                      <td class="py-1 text-slate-400">${s.encoding}</td>
+                      <td class="py-1 text-teal-300">${s.efficiency}</td>
+                      <td class="py-1 text-slate-300">${s.useCase}</td>
+                    </tr>
+                  `).join("")}
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-4 p-3 bg-teal-950/20 border border-teal-500/20 rounded-lg text-xs text-slate-300">
+              <strong class="text-teal-300 block mb-1">Cryptographic Presentation (TLS 1.3):</strong>
+              ${l.deepDive.cryptoPresentation}
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (layerNum === 7) {
+      subHtml = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+          <div class="bg-slate-900/80 border border-indigo-500/30 rounded-xl p-5 shadow-lg">
+            <h4 class="text-sm font-bold text-indigo-400 uppercase tracking-wider mb-2">Web Protocol Evolution Matrix</h4>
+            <div class="overflow-x-auto text-xs">
+              <table class="w-full text-left text-slate-300 border-collapse">
+                <thead>
+                  <tr class="border-b border-slate-700 text-indigo-400">
+                    <th class="py-1">Version</th>
+                    <th class="py-1">Transport</th>
+                    <th class="py-1">Framing & Mux</th>
+                    <th class="py-1">Latency</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${l.deepDive.httpEvolution.map(h => `
+                    <tr class="border-b border-slate-800">
+                      <td class="py-1 font-bold text-white">${h.version}</td>
+                      <td class="py-1 text-amber-300">${h.transport}</td>
+                      <td class="py-1 text-slate-300">${h.mux}</td>
+                      <td class="py-1 text-indigo-300">${h.handshake}</td>
+                    </tr>
+                  `).join("")}
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-4 text-xs text-slate-300">
+              <strong class="text-indigo-300 block mb-1">Hierarchical DNS Resolution Architecture:</strong>
+              <p class="text-slate-400 leading-relaxed">${l.deepDive.dnsArchitecture}</p>
+            </div>
+          </div>
+          <div class="bg-slate-900/80 border border-indigo-500/30 rounded-xl p-5 shadow-lg">
+            <h4 class="text-sm font-bold text-indigo-400 uppercase tracking-wider mb-2">DHCP DORA 4-Way Transaction</h4>
+            <div class="space-y-2 mb-4">
+              ${l.deepDive.dhcpDora.map(d => `
+                <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800 text-xs">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-indigo-300">${d.step}</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">${d.type}</span>
+                  </div>
+                  <div class="text-slate-400 mt-1">${d.desc}</div>
+                </div>
+              `).join("")}
+            </div>
+            <div class="p-3 bg-indigo-950/30 border border-indigo-500/30 rounded-lg text-xs text-slate-300">
+              <strong class="text-indigo-300 block mb-1">Email Push & Pull Store-and-Forward:</strong>
+              <p class="text-slate-400 leading-relaxed">${l.deepDive.emailArchitecture}</p>
+            </div>
+          </div>
+        </div>
+      `;
     }
 
     displayContainer.innerHTML = `

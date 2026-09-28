@@ -1,16 +1,16 @@
 # Graph Report - osi-interactive-suite  (2026-09-28)
 
 ## Corpus Check
-- 5 files · ~16,846 words
+- 5 files · ~16,872 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 53 nodes · 82 edges · 7 communities (1 shown, 6 thin omitted)
+- 54 nodes · 84 edges · 7 communities (1 shown, 6 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0ed5219e`
+- Built from commit: `197a4040`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -24,7 +24,7 @@
 - quiz-data.js
 
 ## God Nodes (most connected - your core abstractions)
-1. `PacketSimulator` - 13 edges
+1. `PacketSimulator` - 14 edges
 2. `TcpHandshakeSimulator` - 7 edges
 3. `TerminalSimulator` - 7 edges
 4. `NetworkTools` - 6 edges
@@ -56,8 +56,8 @@ Nodes (7): initHeaderInspector(), renderInspector(), showFieldDetail(), initLaye
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `PacketSimulator` connect `PacketSimulator` to `.updateUI`?**
-  _High betweenness centrality (0.067) - this node is a cross-community bridge._
+  _High betweenness centrality (0.078) - this node is a cross-community bridge._
 - **Why does `TerminalSimulator` connect `TerminalSimulator` to `NetworkTools`?**
-  _High betweenness centrality (0.037) - this node is a cross-community bridge._
+  _High betweenness centrality (0.035) - this node is a cross-community bridge._
 - **What connects `HEADER_SPECS`, `LAYER_DETAILS`, `QUIZ_QUESTIONS` to the rest of the system?**
   _3 weakly-connected nodes found - possible documentation gaps or missing edges._

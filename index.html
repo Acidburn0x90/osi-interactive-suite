@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OSI Layers 1–4 Deep-Dive & Interactive Protocol Suite</title>
+  <title>OSI 7-Layer Architecture & Interactive Protocol Suite</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,15 +15,20 @@
           OSI
         </div>
         <div>
-          <h1 class="text-base font-bold text-white tracking-tight">OSI Layers 1–4 Interactive Protocol Suite</h1>
-          <p class="text-xs text-slate-400">CSCI 250 Computer Networks • Complete Headers, Trailers & Architecture</p>
+          <h1 class="text-base font-bold text-white tracking-tight">OSI 7-Layer Interactive Protocol Suite</h1>
+          <p class="text-xs text-slate-400">CSCI 250 Computer Networks • Complete 7 Layers, Headers, Trailers & Protocols</p>
         </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="https://bigbois.live" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs transition" style="text-decoration:none;">← bigbois.live ↗</a>
+        <a href="OSI_Complete_7_Layer_Guide.pdf" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-indigo-950/80 hover:bg-indigo-900 text-indigo-300 hover:text-white border border-indigo-500/40 text-xs transition" style="text-decoration:none;">📄 7-Layer PDF Guide ↗</a>
       </div>
 
       <!-- Navigation Tabs -->
       <nav class="flex flex-wrap items-center gap-1.5 text-xs font-semibold">
         <button class="nav-tab-btn active px-3 py-1.5 rounded-lg border border-indigo-500 bg-slate-800/80 text-indigo-400 transition" data-target="view-layers">
-          Layers 1–4 Explorer
+          7 Layers Explorer
         </button>
         <button class="nav-tab-btn px-3 py-1.5 rounded-lg border border-transparent text-slate-400 hover:text-slate-200 transition" data-target="view-headers">
           Header & Trailer Inspector
@@ -50,18 +55,21 @@
   <!-- Main Container -->
   <main class="max-w-7xl mx-auto px-4 py-8">
 
-    <!-- VIEW 1: Layers 1-4 Explorer -->
+    <!-- VIEW 1: 7 Layers Explorer -->
     <section id="view-layers" class="view-section">
       <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 class="text-2xl font-bold text-white">OSI Layers 1 to 4 Architectural Exploration</h2>
-          <p class="text-xs text-slate-400 mt-1">Select a layer to examine its core responsibilities, PDU taxonomy, addressing schemes, and physical hardware.</p>
+          <h2 class="text-2xl font-bold text-white">OSI 7-Layer Architectural Exploration</h2>
+          <p class="text-xs text-slate-400 mt-1">Select any layer from Physical to Application to examine its responsibilities, PDU taxonomy, addressing schemes, and physical hardware.</p>
         </div>
         <div class="flex flex-wrap gap-2" id="layer-selector-pills">
           <button class="layer-pill" data-layer="1">Layer 1: Physical</button>
           <button class="layer-pill" data-layer="2">Layer 2: Data Link</button>
           <button class="layer-pill" data-layer="3">Layer 3: Network</button>
           <button class="layer-pill" data-layer="4">Layer 4: Transport</button>
+          <button class="layer-pill" data-layer="5">Layer 5: Session</button>
+          <button class="layer-pill" data-layer="6">Layer 6: Presentation</button>
+          <button class="layer-pill" data-layer="7">Layer 7: Application</button>
         </div>
       </div>
 
@@ -75,16 +83,20 @@
       <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 class="text-2xl font-bold text-white">Bit-by-Bit Header & Trailer Inspector</h2>
-          <p class="text-xs text-slate-400 mt-1">Click on any field to view exact bit offsets, typical values, binary breakdowns, and functional mechanics.</p>
+          <p class="text-xs text-slate-400 mt-1">Click on any field to view exact bit offsets, typical values, binary breakdowns, and functional mechanics across Layers 2–7.</p>
         </div>
         <div class="flex flex-wrap gap-2">
-          <button class="proto-btn" data-proto="ethernet">Ethernet II Frame (with FCS Trailer)</button>
-          <button class="proto-btn" data-proto="ipv4">IPv4 Header</button>
-          <button class="proto-btn" data-proto="ipv6">IPv6 Header</button>
-          <button class="proto-btn" data-proto="icmp">ICMP Packet</button>
-          <button class="proto-btn" data-proto="arp">ARP Message</button>
-          <button class="proto-btn" data-proto="tcp">TCP Segment Header</button>
-          <button class="proto-btn" data-proto="udp">UDP Datagram Header</button>
+          <button class="proto-btn" data-proto="ethernet">Ethernet II Frame (L2)</button>
+          <button class="proto-btn" data-proto="arp">ARP Message (L2/L3)</button>
+          <button class="proto-btn" data-proto="ipv4">IPv4 Header (L3)</button>
+          <button class="proto-btn" data-proto="ipv6">IPv6 Header (L3)</button>
+          <button class="proto-btn" data-proto="icmp">ICMP Packet (L3)</button>
+          <button class="proto-btn" data-proto="tcp">TCP Segment (L4)</button>
+          <button class="proto-btn" data-proto="udp">UDP Datagram (L4)</button>
+          <button class="proto-btn" data-proto="tls">TLS 1.3 Record (L6)</button>
+          <button class="proto-btn" data-proto="http2">HTTP/2 Frame (L7)</button>
+          <button class="proto-btn" data-proto="dns">DNS Message (L7)</button>
+          <button class="proto-btn" data-proto="dhcp">DHCP / BOOTP (L7)</button>
         </div>
       </div>
 

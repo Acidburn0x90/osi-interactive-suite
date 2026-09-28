@@ -34,6 +34,9 @@
     th { background: #f8fafc; font-weight: 600; color: #0f172a; }
     tr:nth-child(even) { background: #f8fafc; }
     .badge { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 8pt; font-weight: 600; font-family: monospace; }
+    .badge-l7 { background: #e0e7ff; color: #3730a3; border: 1px solid #c7d2fe; }
+    .badge-l6 { background: #ccfbf1; color: #115e59; border: 1px solid #99f6e4; }
+    .badge-l5 { background: #ffe4e6; color: #9f1239; border: 1px solid #fecdd3; }
     .badge-l4 { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
     .badge-l3 { background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; }
     .badge-l2 { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
@@ -50,9 +53,9 @@
     <div style="font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: 600;">
       CSCI 250 Computer Networks • Complete Technical Reference
     </div>
-    <h1>OSI Layers 1–4 Architectural & Protocol Guide</h1>
+    <h1>OSI Complete 7-Layer Architectural & Protocol Reference Guide</h1>
     <div style="font-size: 10pt; color: #475569; margin-bottom: 15px;">
-      In-depth specifications of physical signaling, data link framing & trailers, network routing & addressing, transport protocols, and diagnostics.
+      Comprehensive academic analysis of Layers 1 through 7: physical signaling, framing & trailers, IP routing & CIDR, transport state machines, session checkpoints, presentation syntax & TLS 1.3, and application protocols.
     </div>
   </div>
 
@@ -64,7 +67,13 @@
   <ul>
     <li><strong>SDU (Service Data Unit):</strong> The pure payload delivered from an upper layer before encapsulation.</li>
     <li><strong>PDU (Protocol Data Unit):</strong> The encapsulated block (<code style="background:#e2e8f0;">PDU = Header + SDU + Trailer</code>).</li>
-    <li><strong>Standard PDU Mnemonic:</strong> <em>"Don't Spill Peanut Flavor Bits"</em> → Data (L7–5), <strong>S</strong>egments (L4), <strong>P</strong>ackets (L3), <strong>F</strong>rames (L2), <strong>B</strong>its (L1).</li>
+    <li><strong>7-Layer Mnemonics:</strong>
+      <ul>
+        <li>Top-to-Bottom (7 → 1): <em>"All People Seem To Need Data Processing"</em></li>
+        <li>Bottom-to-Top (1 → 7): <em>"Please Do Not Throw Sausage Pizza Away"</em></li>
+        <li>PDU Mnemonic (7 → 1): <em>"Don't Spill Peanut Flavor Bits"</em> → <strong>D</strong>ata (L7–5), <strong>S</strong>egments (L4), <strong>P</strong>ackets (L3), <strong>F</strong>rames (L2), <strong>B</strong>its (L1).</li>
+      </ul>
+    </li>
   </ul>
 
   <table>
@@ -74,16 +83,37 @@
         <th>PDU Name</th>
         <th>Addressing Scheme</th>
         <th>Core Protocols</th>
-        <th>Hardware & Connectivity Devices</th>
+        <th>Hardware & System Components</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <td><strong>Layer 7: Application</strong></td>
+        <td>Data / Application Message</td>
+        <td>URLs, URIs, FQDNs, Email Addresses</td>
+        <td>HTTP/1.1, HTTP/2, HTTP/3, DNS, DHCP, SSH, SMTP, IMAP</td>
+        <td>Web browsers, Mail clients, DNS servers, Application daemons</td>
+      </tr>
+      <tr>
+        <td><strong>Layer 6: Presentation</strong></td>
+        <td>Data / Formatted Record</td>
+        <td>MIME types, Object Identifiers (OID)</td>
+        <td>TLS 1.3 Record Layer, ASN.1 (BER/DER), Protobuf, XDR, JSON</td>
+        <td>OS serialization libraries, Crypto accelerators (AES-NI), Codecs</td>
+      </tr>
+      <tr>
+        <td><strong>Layer 5: Session</strong></td>
+        <td>Data / Session PDU</td>
+        <td>Session IDs, Connection Handles, SOCKS tokens</td>
+        <td>NetBIOS, RPC, SOCKS5, PPTP, SIP, TLS Resumption</td>
+        <td>OS socket subsystems, RPC runtimes, Session border controllers</td>
+      </tr>
+      <tr>
         <td><strong>Layer 4: Transport</strong></td>
         <td>Segment (TCP) / Datagram (UDP)</td>
         <td>Port Numbers (16-bit, 0–65535)</td>
-        <td>TCP, UDP</td>
-        <td>End hosts, L4 Content/Application Switches</td>
+        <td>TCP, UDP, SCTP, QUIC</td>
+        <td>End hosts, L4 Content/Application Switches, Stateful firewalls</td>
       </tr>
       <tr>
         <td><strong>Layer 3: Network</strong></td>
@@ -94,7 +124,7 @@
       </tr>
       <tr>
         <td><strong>Layer 2: Data Link</strong></td>
-        <td>Frame</td>
+        <td>Frame (with FCS Trailer)</td>
         <td>Physical MAC (48-bit hex)</td>
         <td>Ethernet (802.3), Wi-Fi (802.11)</td>
         <td>Layer 2 Switches, NICs, Bridges, WAPs</td>
@@ -104,7 +134,7 @@
         <td>Bits</td>
         <td>None (Physical Signals)</td>
         <td>1000BASE-T, 10GBASE-SR, 802.11 RF</td>
-        <td>Hubs, Repeaters, Cabling, Transceivers</td>
+        <td>Hubs, Repeaters, Cabling, Transceivers, PHY chips</td>
       </tr>
     </tbody>
   </table>
@@ -497,9 +527,209 @@ Client (192.168.1.105:52144)                   Server (93.184.216.34:80)
    (CLOSED)
   </pre>
 
-  <!-- Section 6 -->
+  <!-- Section 6: Session Layer -->
   <div class="page-break"></div>
-  <h2>6. Network Troubleshooting & Diagnostics Command Reference</h2>
+  <h2>6. Layer 5: Session Layer Architecture</h2>
+  <p>
+    Layer 5 establishes, manages, synchronizes, and gracefully terminates dialogues (sessions) between communicating applications on separate hosts. While modern TCP/IP implementations often embed session semantics within application protocols or transport security, the OSI model formally isolates session state management from transport delivery.
+  </p>
+
+  <h3>Dialogue Control & Directionality</h3>
+  <p>The session layer coordinates which endpoint is permitted to transmit at any given time:</p>
+  <ul>
+    <li><strong>Simplex:</strong> Unidirectional data flow. One station transmits exclusively while the receiving station consumes data with no return channel (e.g., automated broadcast telemetry, radio sensor monitoring).</li>
+    <li><strong>Half-Duplex:</strong> Bidirectional transmission, but strictly alternating. Both endpoints can communicate, but only one direction is active at any single moment. The session layer employs software tokens (e.g., Data Token) to control turn-taking and prevent collisions (e.g., classic walkie-talkie communication, HTTP/1.1 request-response alternation).</li>
+    <li><strong>Full-Duplex:</strong> Simultaneous bidirectional communication. Both endpoints send and receive concurrently over independent channel paths without turn-taking (e.g., modern TCP sockets, WebSockets, VoIP calls).</li>
+  </ul>
+
+  <h3>Checkpoint Synchronization & Fault Recovery</h3>
+  <p>
+    In long-duration data exchanges (such as multi-gigabyte file transfers or distributed database transactions), the session layer inserts synchronization points into the data stream:
+  </p>
+  <ul>
+    <li><strong>Major Synchronization Points:</strong> Atomically commit completed transaction phases. Explicit acknowledgement from the receiving entity is required before transmission continues across a major boundary.</li>
+    <li><strong>Minor Synchronization Points:</strong> Periodic interim checkpoints placed throughout a transfer. If a link disconnects or an error occurs, communicating endpoints roll back and resume transmission from the last verified minor checkpoint rather than restarting the entire transfer from byte zero.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="callout-title">Modern Implementation Note: Layer 5 in the TCP/IP Stack</div>
+    In the Internet Protocol Suite, Layer 5 functionality is folded into application-layer frameworks and security protocols:
+    <ul>
+      <li><strong>RPC (Remote Procedure Call, RFC 1831):</strong> Manages client-server session state, parameter marshalling, and unique transaction XIDs.</li>
+      <li><strong>SOCKS5 (RFC 1928):</strong> Provides generic session-level authentication, proxy negotiation, and UDP/TCP circuit relaying.</li>
+      <li><strong>TLS 1.3 Session Resumption:</strong> Session Tickets and Pre-Shared Key (PSK) handshakes permit clients to resume previous sessions with 0-RTT latency without full re-authentication.</li>
+      <li><strong>SIP (Session Initiation Protocol, RFC 3261):</strong> Establishes, modifies, and terminates multimedia sessions (VoIP, video conferencing).</li>
+    </ul>
+  </div>
+
+  <!-- Section 7: Presentation Layer -->
+  <div class="page-break"></div>
+  <h2>7. Layer 6: Presentation Layer Architecture</h2>
+  <p>
+    Layer 6 ensures that data transmitted from the application layer of one host can be parsed, interpreted, and understood by the application layer of another host across heterogeneous computer architectures, operating systems, and character sets.
+  </p>
+
+  <h3>Abstract Syntax vs. Transfer Syntax</h3>
+  <p>Layer 6 decouples the internal representation of data structures from their wire format:</p>
+  <ul>
+    <li><strong>Abstract Syntax:</strong> The conceptual, platform-independent description of data structures (e.g., ASN.1 schemas, Protocol Buffer <code>.proto</code> definitions, or internal programming language object graphs).</li>
+    <li><strong>Transfer Syntax:</strong> The standardized, canonical byte-level encoding negotiated for physical transmission on the wire (e.g., ASN.1 BER/DER, Protobuf varint binary wire format, or Canonical XDR).</li>
+  </ul>
+
+  <h3>Endianness & Network Byte Order</h3>
+  <p>
+    Heterogeneous CPU architectures store multibyte integer values with differing byte significance. To prevent misinterpretation of binary packet headers, standard network protocols enforce a canonical ordering:
+  </p>
+  <ul>
+    <li><strong>Big-Endian (Network Byte Order):</strong> The Most Significant Byte (MSB) is placed at the lowest memory address and transmitted first over the wire (standardized by RFC 1700 for all IP, TCP, and UDP headers).</li>
+    <li><strong>Little-Endian (Host Byte Order):</strong> The Least Significant Byte (LSB) is stored at the lowest memory address (standard in x86_64 and ARM processors).</li>
+    <li><strong>POSIX Standard Conversion Routines:</strong>
+      <code>htons()</code> (Host to Network Short, 16-bit),
+      <code>htonl()</code> (Host to Network Long, 32-bit),
+      <code>ntohs()</code> (Network to Host Short),
+      <code>ntohl()</code> (Network to Host Long).
+    </li>
+  </ul>
+
+  <h3>Data Serialization & Encoding Comparison</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Format</th>
+        <th>Encoding Type</th>
+        <th>Wire Efficiency</th>
+        <th>Schema Requirement</th>
+        <th>Primary Use Cases</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>JSON</strong></td>
+        <td>Textual (UTF-8)</td>
+        <td>Moderate (verbose string keys)</td>
+        <td>Optional (JSON Schema)</td>
+        <td>Public REST APIs, Web applications, configuration</td>
+      </tr>
+      <tr>
+        <td><strong>ASN.1 (DER)</strong></td>
+        <td>Binary (Type-Length-Value)</td>
+        <td>High (deterministic, compact)</td>
+        <td>Strict (ASN.1 Definition)</td>
+        <td>X.509 Digital Certificates, TLS Handshake, Cryptography</td>
+      </tr>
+      <tr>
+        <td><strong>Protocol Buffers</strong></td>
+        <td>Binary (Varints & Field Tags)</td>
+        <td>Very High (minimal payload)</td>
+        <td>Strict (Compiled <code>.proto</code>)</td>
+        <td>gRPC microservices, internal high-throughput RPCs</td>
+      </tr>
+      <tr>
+        <td><strong>XDR (RFC 4506)</strong></td>
+        <td>Binary (4-Byte Aligned)</td>
+        <td>High (fixed padding)</td>
+        <td>Strict (RFC Specification)</td>
+        <td>NFS (Network File System), Sun RPC</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Cryptographic Presentation (TLS 1.3 Record Layer)</h3>
+  <p>
+    In modern secure architectures, encryption and data transformation are handled by the <strong>TLS 1.3 Record Layer</strong> (RFC 8446). Application plaintext is encapsulated into TLS records, encrypted via Authenticated Encryption with Associated Data (AEAD) ciphers (such as AES-256-GCM or ChaCha20-Poly1305), and tagged with a 16-byte authentication tag ensuring confidentiality, authenticity, and tamper detection.
+  </p>
+
+  <!-- Section 8: Application Layer -->
+  <div class="page-break"></div>
+  <h2>8. Layer 7: Application Layer Protocols</h2>
+  <p>
+    Layer 7 interfaces directly with end-user software applications and human operators, exposing standardized protocols for web navigation, hierarchical domain resolution, automatic dynamic network configuration, remote administration, and electronic mail.
+  </p>
+
+  <h3>Web Protocol Evolution Matrix</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Feature / Dimension</th>
+        <th>HTTP/1.1 (RFC 2616)</th>
+        <th>HTTP/2 (RFC 7540)</th>
+        <th>HTTP/3 (RFC 9114)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Transport Layer</strong></td>
+        <td>TCP</td>
+        <td>TCP</td>
+        <td>QUIC (UDP-based)</td>
+      </tr>
+      <tr>
+        <td><strong>Framing Architecture</strong></td>
+        <td>Plaintext textual (CRLF delimited)</td>
+        <td>Binary framing (Frames & Streams)</td>
+        <td>Binary QUIC Streams</td>
+      </tr>
+      <tr>
+        <td><strong>Multiplexing</strong></td>
+        <td>No (Pipelining causes Head-of-Line blocking)</td>
+        <td>Multiplexed streams over 1 TCP connection</td>
+        <td>Fully independent multiplexed streams</td>
+      </tr>
+      <tr>
+        <td><strong>Head-of-Line Blocking</strong></td>
+        <td>Application-level blocking</td>
+        <td>TCP packet loss stalls all streams</td>
+        <td>Zero Head-of-Line blocking (Stream-isolated)</td>
+      </tr>
+      <tr>
+        <td><strong>Header Compression</strong></td>
+        <td>None (verbose repeated headers)</td>
+        <td>HPACK (static & dynamic table)</td>
+        <td>QPACK (out-of-order stream safe)</td>
+      </tr>
+      <tr>
+        <td><strong>Connection Handshake</strong></td>
+        <td>1 RTT TCP + 1–2 RTT TLS</td>
+        <td>1 RTT TCP + 1 RTT TLS 1.3</td>
+        <td>0–1 RTT Unified QUIC + TLS 1.3</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Hierarchical DNS Resolution Architecture</h3>
+  <p>
+    The Domain Name System (DNS, RFC 1035) is a globally distributed, hierarchical database operating over UDP/TCP Port 53. Resolution proceeds through three primary tiers:
+  </p>
+  <ul>
+    <li><strong>1. Root Nameserver Tier:</strong> 13 logical root server IP addresses (named <code>a.root-servers.net</code> through <code>m.root-servers.net</code>), coordinated by ICANN and distributed worldwide across hundreds of Anycast nodes. Root servers direct queries to appropriate TLD servers.</li>
+    <li><strong>2. Top-Level Domain (TLD) Tier:</strong> Authoritative servers for generic TLDs (<code>.com</code>, <code>.org</code>, <code>.net</code>) and country-code ccTLDs (<code>.us</code>, <code>.uk</code>, <code>.de</code>).</li>
+    <li><strong>3. Authoritative Nameserver Tier:</strong> The definitive nameservers configured by the domain owner holding official zone resource records (A, AAAA, CNAME, MX, TXT, NS).</li>
+  </ul>
+  <p>
+    <strong>Recursive vs. Iterative Queries:</strong> In recursive resolution, the client delegates the full query task to a recursive resolver (e.g., ISP resolver, <code>1.1.1.1</code>, <code>8.8.8.8</code>). The recursive resolver performs iterative queries, asking Root → TLD → Authoritative servers step-by-step until the final IP is returned.
+  </p>
+
+  <h3>DHCP DORA 4-Way Transaction</h3>
+  <p>
+    Dynamic Host Configuration Protocol (DHCP, RFC 2131) automates IP configuration using a four-step transaction over UDP Port 67 (Server) and Port 68 (Client):
+  </p>
+  <ol>
+    <li><strong>D — Discover (Broadcast):</strong> The unconfigured client broadcasts <code>DHCPDISCOVER</code> from <code>0.0.0.0:68</code> to <code>255.255.255.255:67</code> seeking an active DHCP server.</li>
+    <li><strong>O — Offer (Unicast / Broadcast):</strong> A DHCP server reserves an available IP and replies with <code>DHCPOFFER</code> containing the proposed IP address (<code>yiaddr</code>), subnet mask, lease duration, default gateway, and DNS servers.</li>
+    <li><strong>R — Request (Broadcast):</strong> The client broadcasts <code>DHCPREQUEST</code> formally requesting the offered lease. Broadcasting notifies the chosen server of acceptance and signals all other DHCP servers to release their reserved offers.</li>
+    <li><strong>A — Acknowledge (Unicast / Broadcast):</strong> The server writes the lease to its active database and returns <code>DHCPACK</code>, committing the configuration to the client.</li>
+  </ol>
+
+  <h3>Email Architecture: Store-and-Forward Push vs. Pull</h3>
+  <ul>
+    <li><strong>SMTP (Simple Mail Transfer Protocol, TCP 25/587):</strong> A <strong>push</strong> protocol used by Mail User Agents (MUAs) to submit messages to an outgoing Mail Submission Agent (MSA) and by Mail Transfer Agents (MTAs) to relay mail across the Internet to destination servers.</li>
+    <li><strong>IMAP (Internet Message Access Protocol, TCP 143 / 993 SSL):</strong> A <strong>pull</strong> protocol that keeps mail stored on the remote mail server. Clients synchronize multiple folders, read status, and message flags dynamically across devices.</li>
+    <li><strong>POP3 (Post Office Protocol v3, TCP 110 / 995 SSL):</strong> A legacy <strong>pull</strong> protocol that downloads messages to a single local client and historically deletes them from the server.</li>
+  </ul>
+
+  <!-- Section 9: Troubleshooting Reference -->
+  <div class="page-break"></div>
+  <h2>9. Network Troubleshooting & Diagnostics Command Reference</h2>
   <table>
     <thead>
       <tr>
@@ -564,19 +794,48 @@ Client (192.168.1.105:52144)                   Server (93.184.216.34:80)
         <td>Layers 2–4</td>
         <td>CLI packet analyzer that captures live frame headers, handshakes, and payloads crossing a NIC.</td>
       </tr>
+      <tr>
+        <td><code>curl [-I] &lt;url&gt;</code></td>
+        <td>Cross-platform</td>
+        <td>Layer 7</td>
+        <td>HTTP/1.1 and HTTP/2 client diagnostic tool; inspects HTTP response status codes and headers.</td>
+      </tr>
+      <tr>
+        <td><code>openssl s_client</code></td>
+        <td>Cross-platform</td>
+        <td>Layer 6</td>
+        <td>Connects to TLS endpoints; dumps certificate chains, negotiated cipher suites, and AEAD tags.</td>
+      </tr>
+      <tr>
+        <td><code>dhclient -v</code></td>
+        <td>Linux</td>
+        <td>Layer 7</td>
+        <td>Forces DHCP client lease renewal, displaying full DORA broadcast exchange on the terminal.</td>
+      </tr>
+      <tr>
+        <td><code>ssh [-v] &lt;host&gt;</code></td>
+        <td>Cross-platform</td>
+        <td>Layer 7</td>
+        <td>Establishes encrypted interactive remote shell over TCP port 22 with key-exchange verification.</td>
+      </tr>
     </tbody>
   </table>
 
-  <h2>7. Summary Checklist for CSCI 250 Examination</h2>
+  <h2>10. Complete 7-Layer Summary Checklist for CSCI 250 Examination</h2>
   <ul>
-    <li>✔ <strong>PDU Sequence:</strong> Data → Segment (L4) → Packet (L3) → Frame (L2) → Bits (L1).</li>
-    <li>✔ <strong>Trailer Purpose:</strong> Only Layer 2 uses an FCS trailer (CRC-32) for instant hardware verification.</li>
-    <li>✔ <strong>MAC vs. IP:</strong> MAC is 48-bit physical hop-to-hop; IP is 32/128-bit logical end-to-end.</li>
-    <li>✔ <strong>TCP vs. UDP:</strong> TCP is connection-oriented, reliable, sequenced, and heavier (20–60B header); UDP is connectionless, lightweight (8B header), and fire-and-forget.</li>
-    <li>✔ <strong>Socket:</strong> IP Address + Port Number (e.g. <code>10.43.3.87:23</code>).</li>
-    <li>✔ <strong>APIPA:</strong> <code>169.254.0.0/16</code> self-assigned when DHCP fails.</li>
-    <li>✔ <strong>Routing:</strong> Distance-Vector (RIP, hop limit 15) vs. Link-State (OSPF, bandwidth cost, no hop limit) vs. Path-Vector (BGP, protocol of the Internet).</li>
-    <li>✔ <strong>Layer 3 Switches:</strong> Forward packets via hardware ASICs at wire speed, faster than software routers.</li>
+    <li>✔ <strong>Complete 7-Layer Sequence (7 → 1):</strong> Application (L7) → Presentation (L6) → Session (L5) → Transport (L4) → Network (L3) → Data Link (L2) → Physical (L1).</li>
+    <li>✔ <strong>PDU Taxonomy:</strong> Data / Messages (L7–5) → Segments/Datagrams (L4) → Packets (L3) → Frames (L2) → Bits (L1).</li>
+    <li>✔ <strong>Trailer Exclusivity:</strong> Only Layer 2 uses an FCS trailer (CRC-32) because hardware NIC transceivers calculate CRC on-the-fly as bits stream across the wire.</li>
+    <li>✔ <strong>Layer 5 Dialogue:</strong> Simplex (one-way), Half-Duplex (turn-taking with tokens), Full-Duplex (simultaneous both ways). Major checkpoints commit; minor checkpoints recover.</li>
+    <li>✔ <strong>Layer 6 Presentation:</strong> Standardizes Network Byte Order (Big-Endian, MSB first) via <code>htons()</code>/<code>ntohl()</code>, serializes schemas (ASN.1 DER, Protobuf), and encrypts payloads via TLS 1.3 AEAD records.</li>
+    <li>✔ <strong>Layer 7 Evolution:</strong> HTTP/1.1 (ASCII text, pipeline HOL blocking) → HTTP/2 (binary frames, single TCP stream multiplexing) → HTTP/3 (QUIC over UDP, zero transport HOL blocking).</li>
+    <li>✔ <strong>DNS Hierarchy:</strong> Root Nameservers (13 clusters) → TLD Nameservers (<code>.com</code>) → Authoritative Nameservers. Iterative vs. recursive query models.</li>
+    <li>✔ <strong>DHCP DORA:</strong> Discover (Broadcast) → Offer (Unicast/Broadcast) → Request (Broadcast) → Acknowledge (Unicast/Broadcast).</li>
+    <li>✔ <strong>Email Routing:</strong> SMTP (TCP 25/587) pushes mail between servers; IMAP (TCP 993) pulls and synchronizes mailbox state across devices.</li>
+    <li>✔ <strong>Transport Differences:</strong> TCP is connection-oriented, reliable, sequenced, and heavier (20–60B header); UDP is connectionless, lightweight (8B header), and fire-and-forget.</li>
+    <li>✔ <strong>Socket Composition:</strong> <code>IP_Address : Port_Number</code> (e.g. <code>192.168.1.100:443</code>).</li>
+    <li>✔ <strong>APIPA Range:</strong> <code>169.254.0.0/16</code> automatically assigned when DHCP negotiation fails.</li>
+    <li>✔ <strong>Routing Classifications:</strong> Distance-Vector (RIP, max 15 hops) vs. Link-State (OSPF, Dijkstra SPF algorithm, bandwidth metric) vs. Path-Vector (BGP, Autonomous Systems).</li>
   </ul>
 
 </body>
