@@ -307,14 +307,14 @@ rtt min/avg/max/mdev = 13.842/14.015/14.231/0.145 ms
 Windows IP Configuration
 
    Host Name . . . . . . . . . . . . : LAB-WORKSTATION-01
-   Primary Dns Suffix  . . . . . . . : campus.bridgewater.edu
+   Primary Dns Suffix  . . . . . . . : lab.csci250.internal
    Node Type . . . . . . . . . . . . : Hybrid
    IP Routing Enabled. . . . . . . . : No
    WINS Proxy Enabled. . . . . . . . : No
 
 Ethernet adapter Ethernet 1:
 
-   Connection-specific DNS Suffix  . : campus.bridgewater.edu
+   Connection-specific DNS Suffix  . : lab.csci250.internal
    Description . . . . . . . . . . . : Intel(R) Ethernet Connection (7) I219-V
    Physical Address. . . . . . . . . : 3C-52-82-11-22-33
    DHCP Enabled. . . . . . . . . . . : Yes
@@ -459,6 +459,11 @@ traceroute to ${this.escapeHtml(trHost)} (${trHost}), 30 hops max, 60 byte packe
   }
 
   escapeHtml(str) {
-    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
   }
 }

@@ -194,10 +194,20 @@ class PacketSimulator {
     }
   }
 
+  escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
   renderStage(step, cfg) {
+    const safePayload = this.escapeHtml(cfg.payload);
     const rawPayloadHtml = `<div class="packet-block bg-rose-950/70 border border-rose-500/50 text-rose-200 px-4 py-3 rounded-lg font-mono text-sm shadow-md flex-1 text-center truncate">
       <span class="text-xs uppercase tracking-wider text-rose-400 block font-sans">L7 Application Payload</span>
-      "${cfg.payload}"
+      "${safePayload}"
     </div>`;
 
     if (step === 0) {
@@ -330,7 +340,7 @@ class PacketSimulator {
             <div class="p-3 bg-rose-950/40 border border-rose-500/40 rounded-lg text-rose-300">
               <div class="font-bold mb-1">4. L7 Delivered</div>
               <div>Process receives:</div>
-              <div class="truncate text-white font-bold">"${cfg.payload}"</div>
+              <div class="truncate text-white font-bold">"${safePayload}"</div>
             </div>
           </div>
         </div>

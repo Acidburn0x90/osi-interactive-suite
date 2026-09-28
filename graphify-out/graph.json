@@ -14,7 +14,7 @@
       "file_type": "code",
       "norm_label": "tcphandshakesimulator",
       "source_file": "simulator.js",
-      "source_location": "L342"
+      "source_location": "L352"
     },
     {
       "id": "simulator_packetsimulator",
@@ -245,7 +245,7 @@
       "file_type": "code",
       "norm_label": ".bindevents()",
       "source_file": "simulator.js",
-      "source_location": "L357"
+      "source_location": "L367"
     },
     {
       "id": "simulator_tcphandshakesimulator_constructor",
@@ -257,7 +257,7 @@
       "file_type": "code",
       "norm_label": ".constructor()",
       "source_file": "simulator.js",
-      "source_location": "L343"
+      "source_location": "L353"
     },
     {
       "id": "simulator_tcphandshakesimulator_init",
@@ -269,7 +269,7 @@
       "file_type": "code",
       "norm_label": ".init()",
       "source_file": "simulator.js",
-      "source_location": "L352"
+      "source_location": "L362"
     },
     {
       "id": "simulator_tcphandshakesimulator_nextstep",
@@ -281,7 +281,7 @@
       "file_type": "code",
       "norm_label": ".nextstep()",
       "source_file": "simulator.js",
-      "source_location": "L364"
+      "source_location": "L374"
     },
     {
       "id": "simulator_tcphandshakesimulator_reset",
@@ -293,7 +293,7 @@
       "file_type": "code",
       "norm_label": ".reset()",
       "source_file": "simulator.js",
-      "source_location": "L371"
+      "source_location": "L381"
     },
     {
       "id": "simulator_tcphandshakesimulator_updateui",
@@ -305,7 +305,7 @@
       "file_type": "code",
       "norm_label": ".updateui()",
       "source_file": "simulator.js",
-      "source_location": "L378"
+      "source_location": "L388"
     },
     {
       "id": "simulator_packetsimulator_constructor",
@@ -318,6 +318,18 @@
       "norm_label": ".constructor()",
       "source_file": "simulator.js",
       "source_location": "L7"
+    },
+    {
+      "id": "simulator_packetsimulator_escapehtml",
+      "label": ".escapeHtml()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "PacketSimulator",
+      "file_type": "code",
+      "norm_label": ".escapehtml()",
+      "source_file": "simulator.js",
+      "source_location": "L197"
     },
     {
       "id": "simulator_packetsimulator_nextstep",
@@ -365,7 +377,7 @@
       "file_type": "code",
       "norm_label": ".renderstage()",
       "source_file": "simulator.js",
-      "source_location": "L197"
+      "source_location": "L206"
     },
     {
       "id": "simulator_packetsimulator_reset",
@@ -562,8 +574,8 @@
       "id": "simulator",
       "label": "simulator.js",
       "_origin": "ast",
-      "community": 1,
-      "community_name": ".updateUI",
+      "community": 2,
+      "community_name": "PacketSimulator",
       "file_type": "code",
       "norm_label": "simulator.js",
       "source_file": "simulator.js",
@@ -807,6 +819,18 @@
     },
     {
       "source": "simulator_packetsimulator_renderstage",
+      "target": "simulator_packetsimulator_escapehtml",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "simulator.js",
+      "source_location": "L207",
+      "weight": 1.0
+    },
+    {
+      "source": "simulator_packetsimulator_renderstage",
       "target": "simulator_packetsimulator_stringtobinary",
       "relation": "calls",
       "_origin": "ast",
@@ -814,7 +838,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "simulator.js",
-      "source_location": "L291",
+      "source_location": "L301",
       "weight": 1.0
     },
     {
@@ -886,7 +910,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "simulator.js",
-      "source_location": "L360",
+      "source_location": "L370",
       "weight": 1.0
     },
     {
@@ -898,7 +922,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "simulator.js",
-      "source_location": "L361",
+      "source_location": "L371",
       "weight": 1.0
     },
     {
@@ -910,7 +934,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "simulator.js",
-      "source_location": "L353",
+      "source_location": "L363",
       "weight": 1.0
     },
     {
@@ -922,7 +946,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "simulator.js",
-      "source_location": "L354",
+      "source_location": "L364",
       "weight": 1.0
     },
     {
@@ -934,7 +958,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "simulator.js",
-      "source_location": "L367",
+      "source_location": "L377",
       "weight": 1.0
     },
     {
@@ -946,7 +970,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "simulator.js",
-      "source_location": "L375",
+      "source_location": "L385",
       "weight": 1.0
     },
     {
@@ -1200,7 +1224,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "simulator.js",
-      "source_location": "L342",
+      "source_location": "L352",
       "weight": 1.0
     },
     {
@@ -1282,13 +1306,24 @@
     },
     {
       "source": "simulator_packetsimulator",
-      "target": "simulator_packetsimulator_renderstage",
+      "target": "simulator_packetsimulator_escapehtml",
       "relation": "method",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "simulator.js",
       "source_location": "L197",
+      "weight": 1.0
+    },
+    {
+      "source": "simulator_packetsimulator",
+      "target": "simulator_packetsimulator_renderstage",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "simulator.js",
+      "source_location": "L206",
       "weight": 1.0
     },
     {
@@ -1376,7 +1411,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "simulator.js",
-      "source_location": "L343",
+      "source_location": "L353",
       "weight": 1.0
     },
     {
@@ -1387,7 +1422,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "simulator.js",
-      "source_location": "L352",
+      "source_location": "L362",
       "weight": 1.0
     },
     {
@@ -1398,7 +1433,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "simulator.js",
-      "source_location": "L357",
+      "source_location": "L367",
       "weight": 1.0
     },
     {
@@ -1409,7 +1444,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "simulator.js",
-      "source_location": "L364",
+      "source_location": "L374",
       "weight": 1.0
     },
     {
@@ -1420,7 +1455,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "simulator.js",
-      "source_location": "L371",
+      "source_location": "L381",
       "weight": 1.0
     },
     {
@@ -1431,7 +1466,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "simulator.js",
-      "source_location": "L378",
+      "source_location": "L388",
       "weight": 1.0
     },
     {
@@ -1581,5 +1616,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0ed5219e16fd67bd8be695a731ff3314c0eaaa45"
+  "built_at_commit": "197a4040833ae925a131df478773d5a264125570"
 }
