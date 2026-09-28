@@ -424,10 +424,10 @@ function initLayerExplorer() {
           </div>
           <div class="flex flex-wrap gap-2 text-xs font-mono">
             <div class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300">
-              <span class="text-slate-500">PDU:</span> <strong class="text-white">${l.pdu}</strong>
+              <span class="text-slate-500">PDU:</span> <strong class="text-white">${l.pdu}</strong> <span class="text-amber-300/90 font-semibold">(${l.pduMnemonic})</span>
             </div>
             <div class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300">
-              <span class="text-slate-500">Mnemonic:</span> <strong class="text-amber-400">${l.mnemonic}</strong>
+              <span class="text-slate-500">Layer Mnemonic:</span> <strong class="text-amber-400">${l.mnemonic}</strong>
             </div>
           </div>
         </div>
