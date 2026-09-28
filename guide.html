@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>OSI Layers 1–4 Architectural & Protocol Guide</title>
+  <title>OSI Complete 7-Layer Architectural & Protocol Guide</title>
   <style>
     @page {
       size: letter;
@@ -837,6 +837,220 @@ Client (192.168.1.105:52144)                   Server (93.184.216.34:80)
     <li>✔ <strong>APIPA Range:</strong> <code>169.254.0.0/16</code> automatically assigned when DHCP negotiation fails.</li>
     <li>✔ <strong>Routing Classifications:</strong> Distance-Vector (RIP, max 15 hops) vs. Link-State (OSPF, Dijkstra SPF algorithm, bandwidth metric) vs. Path-Vector (BGP, Autonomous Systems).</li>
   </ul>
+
+  <!-- Section 11: Formal Academic Bibliography & RFC Specifications -->
+  <div class="page-break"></div>
+  <h2>11. Formal Academic Bibliography & Standards Specifications</h2>
+  
+  <h3>Primary Academic Textbooks & Curricula</h3>
+  <ul>
+    <li>
+      <strong>Kurose, J. F., & Ross, K. W. (2021).</strong> <em>Computer Networking: A Top-Down Approach</em> (8th ed.). Pearson.
+      <br><span style="color:#64748b; font-size:9pt;">Primary pedagogical authority for transport layer socket abstractions, TCP state transition diagrams, sliding-window flow control, congestion avoidance algorithms (Tahoe, Reno, CUBIC), DNS resolution mechanics, and HTTP protocol evolution.</span>
+    </li>
+    <li>
+      <strong>Tanenbaum, A. S., Wetherall, D. J., & Feamster, N. (2021).</strong> <em>Computer Networks</em> (6th ed.). Pearson.
+      <br><span style="color:#64748b; font-size:9pt;">Canonical academic reference for the 7-Layer OSI reference model, formal PDU/SDU encapsulation taxonomy, framing algorithms, Hamming/CRC error-detection mathematics, and medium access sublayer protocols.</span>
+    </li>
+    <li>
+      <strong>Stevens, W. R., & Fall, K. R. (2011).</strong> <em>TCP/IP Illustrated, Volume 1: The Protocols</em> (2nd ed.). Addison-Wesley Professional.
+      <br><span style="color:#64748b; font-size:9pt;">Definitive systems-programming guide for raw binary wire layouts, bitfield header offsets, IP fragmentation flags, TCP options parsing, and BSD socket diagnostic tools.</span>
+    </li>
+    <li>
+      <strong>CSCI 250: Computer Networks Curriculum.</strong> University Course Syllabus, Lecture Modules (Chapters 1–4), and Laboratory Practicums (Lab A5).
+      <br><span style="color:#64748b; font-size:9pt;">Curricular alignment source for IPv4 subnetting matrices, EUI-64 MAC-to-IPv6 derivation procedures, command-line diagnostic toolchains (ping, traceroute, netstat, arp, dig), and exam review question banks.</span>
+    </li>
+  </ul>
+
+  <h3>Authoritative IETF RFC & IEEE Engineering Standards</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 14%;">Standard</th>
+        <th style="width: 12%;">Layer</th>
+        <th style="width: 12%;">Body</th>
+        <th style="width: 32%;">Title / Scope</th>
+        <th style="width: 30%;">Technical Relevance to Suite</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>RFC 9114</strong></td>
+        <td><span class="badge badge-l7">Layer 7</span></td>
+        <td>IETF</td>
+        <td>HTTP/3 over QUIC</td>
+        <td>Defines multiplexed web transport over UDP, eliminating Head-of-Line blocking; referenced in Layer 7 Explorer & Inspector.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 7540</strong></td>
+        <td><span class="badge badge-l7">Layer 7</span></td>
+        <td>IETF</td>
+        <td>Hypertext Transfer Protocol Version 2 (HTTP/2)</td>
+        <td>Specifies binary framing layers, stream prioritization, and HPACK header compression.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 9110 / 2616</strong></td>
+        <td><span class="badge badge-l7">Layer 7</span></td>
+        <td>IETF</td>
+        <td>HTTP/1.1 Semantics & Wire Framing</td>
+        <td>Standardizes HTTP request/response methods, status codes, chunked transfer encodings, and persistent keep-alive connections.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 1034 / 1035</strong></td>
+        <td><span class="badge badge-l7">Layer 7</span></td>
+        <td>IETF</td>
+        <td>Domain Names — Concepts & Implementation</td>
+        <td>Specifies hierarchical DNS namespace, RR formats (A, AAAA, MX, CNAME, NS), and UDP/TCP port 53 query/response structures.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 2131</strong></td>
+        <td><span class="badge badge-l7">Layer 7</span></td>
+        <td>IETF</td>
+        <td>Dynamic Host Configuration Protocol (DHCP)</td>
+        <td>Governs the 4-way DORA bootstrap state machine (Discover, Offer, Request, Acknowledge) over UDP ports 67/68.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 5321</strong></td>
+        <td><span class="badge badge-l7">Layer 7</span></td>
+        <td>IETF</td>
+        <td>Simple Mail Transfer Protocol (SMTP)</td>
+        <td>Defines store-and-forward email relaying, HELO/EHLO handshakes, MAIL FROM/RCPT TO envelopes over TCP port 25/587.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 3501 / 9051</strong></td>
+        <td><span class="badge badge-l7">Layer 7</span></td>
+        <td>IETF</td>
+        <td>Internet Message Access Protocol (IMAP4rev2)</td>
+        <td>Governs bi-directional remote mailbox synchronization, persistent folder states, and message flags over TCP port 143/993.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 4251 / 4253</strong></td>
+        <td><span class="badge badge-l7">Layer 7</span></td>
+        <td>IETF</td>
+        <td>The Secure Shell (SSH) Protocol Architecture</td>
+        <td>Specifies encrypted transport layer protocol, key exchange, server authentication, and interactive remote shell execution over TCP port 22.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 8446</strong></td>
+        <td><span class="badge badge-l6">Layer 6</span></td>
+        <td>IETF</td>
+        <td>The Transport Layer Security (TLS) Protocol v1.3</td>
+        <td>Eliminates obsolete ciphers; standardizes 1-RTT handshake, encrypted SNI, and record-layer AEAD encapsulation (AES-GCM, ChaCha20-Poly1305).</td>
+      </tr>
+      <tr>
+        <td><strong>ITU-T X.680 / X.690</strong></td>
+        <td><span class="badge badge-l6">Layer 6</span></td>
+        <td>ITU-T / ISO</td>
+        <td>ASN.1 Specification & BER/DER Encoding Rules</td>
+        <td>Defines abstract data syntax serialization rules used for X.509 digital certificates and cryptographic signatures.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 4506</strong></td>
+        <td><span class="badge badge-l6">Layer 6</span></td>
+        <td>IETF</td>
+        <td>XDR: External Data Representation Standard</td>
+        <td>Canonical standard for machine-independent data serialization across heterogeneous architectures (Sun RPC, NFS).</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 8259</strong></td>
+        <td><span class="badge badge-l6">Layer 6</span></td>
+        <td>IETF</td>
+        <td>The JavaScript Object Notation (JSON) Data Format</td>
+        <td>Ubiquitous text-based serialization standard for modern RESTful web APIs and microservices.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 1928</strong></td>
+        <td><span class="badge badge-l5">Layer 5</span></td>
+        <td>IETF</td>
+        <td>SOCKS Protocol Version 5</td>
+        <td>Framework for client-server proxy authentication and generic session relaying across network firewalls.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 1831 / 5531</strong></td>
+        <td><span class="badge badge-l5">Layer 5</span></td>
+        <td>IETF</td>
+        <td>RPC: Remote Procedure Call Protocol Specification</td>
+        <td>Governs session synchronization, transaction IDs (XID), authentication handshakes, and remote service dispatching.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 3261</strong></td>
+        <td><span class="badge badge-l5">Layer 5</span></td>
+        <td>IETF</td>
+        <td>SIP: Session Initiation Protocol</td>
+        <td>Application/session signaling protocol for creating, modifying, and terminating multimedia sessions (VoIP, video conferencing).</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 9293</strong></td>
+        <td><span class="badge badge-l4">Layer 4</span></td>
+        <td>IETF</td>
+        <td>Transmission Control Protocol (TCP)</td>
+        <td>Supersedes RFC 793; formalizes 3-way handshake state machine (SYN, SYN-ACK, ACK), sequence/acknowledgment numbers, sliding windows, and graceful FIN closure.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 768</strong></td>
+        <td><span class="badge badge-l4">Layer 4</span></td>
+        <td>IETF</td>
+        <td>User Datagram Protocol (UDP)</td>
+        <td>Defines connectionless, lightweight 8-byte datagram transport with optional 16-bit one's complement checksum.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 9000</strong></td>
+        <td><span class="badge badge-l4">Layer 4</span></td>
+        <td>IETF</td>
+        <td>QUIC: A UDP-Based Multiplexed Secure Transport</td>
+        <td>Underlying transport protocol for HTTP/3, integrating TLS 1.3 encryption directly into stream multiplexing over UDP.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 791 / 8200</strong></td>
+        <td><span class="badge badge-l3">Layer 3</span></td>
+        <td>IETF</td>
+        <td>Internet Protocol (IPv4 / IPv6 Specifications)</td>
+        <td>Establishes global logical addressing, 32-bit and 128-bit header layouts, TTL/Hop Limit decrement, and packet routing across autonomous systems.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 792 / 4443</strong></td>
+        <td><span class="badge badge-l3">Layer 3</span></td>
+        <td>IETF</td>
+        <td>Internet Control Message Protocol (ICMPv4 / ICMPv6)</td>
+        <td>Provides network diagnostic signaling (Type 8/0 Echo, Type 11 Time Exceeded, Type 3 Destination Unreachable); core basis for <code>ping</code> and <code>traceroute</code>.</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 1918 / 3927</strong></td>
+        <td><span class="badge badge-l3">Layer 3</span></td>
+        <td>IETF</td>
+        <td>Private Address Allocation & IPv4 Link-Local (APIPA)</td>
+        <td>Defines non-routable private ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) and self-assigned fallback addressing (169.254.0.0/16).</td>
+      </tr>
+      <tr>
+        <td><strong>RFC 4291</strong></td>
+        <td><span class="badge badge-l3">Layer 3</span></td>
+        <td>IETF</td>
+        <td>IP Version 6 Addressing Architecture (EUI-64)</td>
+        <td>Formulates the deterministic derivation of 64-bit Interface IDs from 48-bit IEEE MAC addresses via <code>0xFFFE</code> insertion and universal/local bit flipping.</td>
+      </tr>
+      <tr>
+        <td><strong>IEEE 802.3</strong></td>
+        <td><span class="badge badge-l2">Layer 2</span></td>
+        <td>IEEE</td>
+        <td>Ethernet Framing & Frame Check Sequence (FCS)</td>
+        <td>Standardizes the 14-byte Ethernet II header, Preamble/SFD, 48-bit MAC addresses, and the hardware-calculated 32-bit CRC-32 trailer.</td>
+      </tr>
+      <tr>
+        <td><strong>IEEE 802.1Q</strong></td>
+        <td><span class="badge badge-l2">Layer 2</span></td>
+        <td>IEEE</td>
+        <td>Virtual Bridged Local Area Networks (VLAN Tagging)</td>
+        <td>Defines 4-byte 802.1Q header insertion (TPID 0x8100, Priority, Drop Eligible, 12-bit VLAN ID) for network traffic segmentation.</td>
+      </tr>
+      <tr>
+        <td><strong>ANSI/TIA-568-D</strong></td>
+        <td><span class="badge badge-l1">Layer 1</span></td>
+        <td>ANSI / TIA</td>
+        <td>Commercial Building Telecommunications Cabling</td>
+        <td>Standardizes pinout assignments for twisted-pair copper cabling (T568A vs. T568B pin configurations for RJ-45 terminations).</td>
+      </tr>
+    </tbody>
+  </table>
 
 </body>
 </html>

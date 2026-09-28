@@ -30,15 +30,15 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1790616516.1064982,
-    "seen": 1790616522.4343252,
-    "ast_hash": "d2c0f011ca238a6f139eed863c24b312",
+    "mtime": 1790617211.2954419,
+    "seen": 1790617244.5483928,
+    "ast_hash": "d3260477f85f0f449aa0f5c5f567760f",
     "semantic_hash": ""
   },
   "guide.html": {
-    "mtime": 1790616115.760095,
-    "seen": 1790616273.6422975,
-    "ast_hash": "5a9e578b471a2938bf1da1cdffe017ea",
+    "mtime": 1790617176.3965964,
+    "seen": 1790617244.5483902,
+    "ast_hash": "3dc66a7691213fdac54e551d264a2cd4",
     "semantic_hash": ""
   },
   "OSI_Interactive_Suite_App.pdf": {
@@ -60,9 +60,15 @@
     "semantic_hash": ""
   },
   "OSI_Complete_7_Layer_Guide.pdf": {
-    "mtime": 1790616133.1349163,
-    "seen": 1790616273.6423013,
-    "ast_hash": "99d28a1bb2cdf67507a18b5fa4fae323",
+    "mtime": 1790617219.0062747,
+    "seen": 1790617244.5483968,
+    "ast_hash": "344c7e906c79c4b730df9af653429f2d",
+    "semantic_hash": ""
+  },
+  "sources.html": {
+    "mtime": 1790616977.6049654,
+    "seen": 1790617244.5483947,
+    "ast_hash": "c8b9ecc4e7c3ca1dc9dd7cda47b5fde6",
     "semantic_hash": ""
   }
 }

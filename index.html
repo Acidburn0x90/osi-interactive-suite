@@ -23,6 +23,7 @@
       <div class="flex items-center gap-2">
         <a href="https://bigbois.live" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs transition" style="text-decoration:none;">← bigbois.live ↗</a>
         <a href="OSI_Complete_7_Layer_Guide.pdf" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-indigo-950/80 hover:bg-indigo-900 text-indigo-300 hover:text-white border border-indigo-500/40 text-xs transition" style="text-decoration:none;">📄 7-Layer PDF Guide ↗</a>
+        <a href="sources.html" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs transition" style="text-decoration:none;">📚 Sources ↗</a>
       </div>
 
       <!-- Navigation Tabs -->
@@ -47,6 +48,9 @@
         </button>
         <button class="nav-tab-btn px-3 py-1.5 rounded-lg border border-transparent text-slate-400 hover:text-slate-200 transition" data-target="view-quiz">
           Exam Prep Quiz
+        </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-lg border border-transparent text-slate-400 hover:text-slate-200 transition" data-target="view-sources">
+          Academic Sources & RFCs
         </button>
       </nav>
     </div>
@@ -332,6 +336,143 @@
 
       <div id="quiz-container" class="max-w-3xl mx-auto">
         <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- VIEW 8: Academic Sources & Standards Reference -->
+    <section id="view-sources" class="view-section hidden">
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold text-white">Academic Sources, RFC Specifications & Standards</h2>
+          <p class="text-xs text-slate-400 mt-1">Formal curriculum citations, standard textbooks, and authoritative IETF RFC & IEEE specifications underpinning every module of this interactive suite.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="sources.html" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold text-white transition" style="text-decoration:none;">📄 Standalone Sources Page ↗</a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <!-- Card 1: Core Coursework & Textbooks -->
+        <div class="bg-slate-900 border border-indigo-500/30 rounded-2xl p-5 shadow-xl">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-indigo-400"></span>
+            <h3 class="text-base font-bold text-white">Academic Foundations</h3>
+          </div>
+          <p class="text-xs text-slate-400 mb-4">University network systems curriculum textbooks and official course materials.</p>
+          <ul class="text-xs space-y-3 text-slate-300">
+            <li class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
+              <strong class="text-indigo-300 block mb-0.5">Computer Networking: A Top-Down Approach (8th Ed.)</strong>
+              <span class="text-slate-400">James F. Kurose & Keith W. Ross • Pearson (2021)</span>
+              <div class="text-[11px] text-slate-500 mt-1">Primary authority for L4 socket abstraction, TCP state machines, sliding window algorithms, DNS hierarchy, and HTTP evolution.</div>
+            </li>
+            <li class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
+              <strong class="text-indigo-300 block mb-0.5">Computer Networks (6th Ed.)</strong>
+              <span class="text-slate-400">Andrew S. Tanenbaum, David J. Wetherall, Nick Feamster • Pearson (2021)</span>
+              <div class="text-[11px] text-slate-500 mt-1">Canonical reference for the 7-Layer OSI model, PDU taxonomy, framing protocols, and hardware CRC checksum computation.</div>
+            </li>
+            <li class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
+              <strong class="text-indigo-300 block mb-0.5">TCP/IP Illustrated, Vol. 1: The Protocols (2nd Ed.)</strong>
+              <span class="text-slate-400">W. Richard Stevens & Kevin R. Fall • Addison-Wesley (2011)</span>
+              <div class="text-[11px] text-slate-500 mt-1">Definitive guide for bitfield header offsets, binary protocol flags, and network diagnostic utilities.</div>
+            </li>
+            <li class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
+              <strong class="text-indigo-300 block mb-0.5">CSCI 250: Computer Networks Curriculum</strong>
+              <span class="text-slate-400">University Course Syllabus, Chapters 1–4 Lecture Modules & Lab A5</span>
+              <div class="text-[11px] text-slate-500 mt-1">Subnetting exercises, IPv6 EUI-64 algorithm derivation, ping/traceroute/netstat diagnostic labs, and exam review banks.</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Standards Bodies & Layer Specifications -->
+        <div class="bg-slate-900 border border-sky-500/30 rounded-2xl p-5 shadow-xl md:col-span-2">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
+            <h3 class="text-base font-bold text-white">IETF RFCs & IEEE Engineering Specifications</h3>
+          </div>
+          <p class="text-xs text-slate-400 mb-4">Official protocol standards defining wire layouts, bitwidths, state machines, and RFC numbers.</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+            <!-- Application Layer (L7) -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="font-bold text-indigo-400 uppercase tracking-wider text-[11px]">Layer 7: Application</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">RFCs</span>
+              </div>
+              <ul class="space-y-1 text-slate-300">
+                <li><strong class="text-white">RFC 9114:</strong> HTTP/3 (QUIC-based web transport)</li>
+                <li><strong class="text-white">RFC 7540:</strong> HTTP/2 (Binary Framing, Multiplexing)</li>
+                <li><strong class="text-white">RFC 9110 / 2616:</strong> HTTP/1.1 Semantics & Text Framing</li>
+                <li><strong class="text-white">RFC 1034 & 1035:</strong> Domain Name System (DNS)</li>
+                <li><strong class="text-white">RFC 2131:</strong> Dynamic Host Configuration Protocol (DHCP)</li>
+                <li><strong class="text-white">RFC 5321:</strong> Simple Mail Transfer Protocol (SMTP)</li>
+                <li><strong class="text-white">RFC 3501 & 9051:</strong> Internet Message Access Protocol (IMAP)</li>
+                <li><strong class="text-white">RFC 4251 & 4253:</strong> Secure Shell Protocol (SSH-2.0)</li>
+              </ul>
+            </div>
+
+            <!-- Presentation & Session (L6 & L5) -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="font-bold text-teal-400 uppercase tracking-wider text-[11px]">Layers 5 & 6: Session & Presentation</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-teal-500/20 text-teal-300 border border-teal-500/30">Standards</span>
+              </div>
+              <ul class="space-y-1 text-slate-300">
+                <li><strong class="text-white">RFC 8446:</strong> TLS 1.3 Protocol (Record Layer & Handshake)</li>
+                <li><strong class="text-white">ITU-T X.680 / X.690:</strong> ASN.1 & BER/DER Rules</li>
+                <li><strong class="text-white">RFC 4506:</strong> XDR External Data Representation</li>
+                <li><strong class="text-white">RFC 8259:</strong> JSON Data Interchange Format</li>
+                <li><strong class="text-white">RFC 1928:</strong> SOCKS Protocol Version 5</li>
+                <li><strong class="text-white">RFC 1831:</strong> RPC: Remote Procedure Call Specification</li>
+                <li><strong class="text-white">RFC 3261:</strong> SIP: Session Initiation Protocol</li>
+                <li><strong class="text-white">RFC 1700:</strong> Assigned Numbers (Network Byte Order)</li>
+              </ul>
+            </div>
+
+            <!-- Transport Layer (L4) -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="font-bold text-amber-400 uppercase tracking-wider text-[11px]">Layer 4: Transport</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30">RFCs</span>
+              </div>
+              <ul class="space-y-1 text-slate-300">
+                <li><strong class="text-white">RFC 9293:</strong> Transmission Control Protocol (TCP)</li>
+                <li><strong class="text-white">RFC 768:</strong> User Datagram Protocol (UDP)</li>
+                <li><strong class="text-white">RFC 9000:</strong> QUIC Transport Protocol</li>
+                <li><strong class="text-white">RFC 6335:</strong> IANA Port Number Registry</li>
+              </ul>
+            </div>
+
+            <!-- Network & Lower Architecture (L3, L2, L1) -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="font-bold text-emerald-400 uppercase tracking-wider text-[11px]">Layers 1–3: Lower Architecture</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">IEEE & RFC</span>
+              </div>
+              <ul class="space-y-1 text-slate-300">
+                <li><strong class="text-white">RFC 791 & 8200:</strong> IPv4 and IPv6 Base Protocols</li>
+                <li><strong class="text-white">RFC 792 & 4443:</strong> ICMP and ICMPv6</li>
+                <li><strong class="text-white">RFC 2328 & 4271:</strong> OSPF Version 2 & BGP-4</li>
+                <li><strong class="text-white">RFC 1918 & 3927:</strong> Private Addressing & APIPA</li>
+                <li><strong class="text-white">RFC 4291:</strong> IPv6 Addressing & EUI-64 Format</li>
+                <li><strong class="text-white">IEEE 802.3:</strong> Ethernet Framing & 32-Bit FCS CRC</li>
+                <li><strong class="text-white">IEEE 802.1Q:</strong> VLAN Tagging Standards</li>
+                <li><strong class="text-white">ANSI/TIA-568-D:</strong> Twisted-Pair Pinouts (T568A / T568B)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Verification & Pedagogical Goals Card -->
+      <div class="p-5 rounded-2xl bg-indigo-950/30 border border-indigo-500/40 text-xs text-slate-300">
+        <h4 class="text-sm font-bold text-indigo-300 mb-2">Pedagogical Design & Academic Rigor</h4>
+        <p class="leading-relaxed mb-3">
+          This interactive suite was engineered to transform abstract theoretical networking concepts into tangible, measurable systems interactions. By providing live bit-level packet dissecting, state machine stepping, mathematical subnet calculations, and authentic simulated command-line tooling, it reinforces both foundational networking theory and hands-on operational troubleshooting.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 text-xs font-mono">
+          <a href="OSI_Complete_7_Layer_Guide.pdf" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition" style="text-decoration:none;">📄 Download 11-Chapter Reference Guide (PDF)</a>
+          <span class="text-slate-400">Course: CSCI 250 Computer Networks</span>
+        </div>
       </div>
     </section>
 
