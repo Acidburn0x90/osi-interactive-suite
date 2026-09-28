@@ -452,6 +452,128 @@ const HEADER_SPECS = {
         row: 2
       }
     ]
+  },
+
+  icmp: {
+    id: "icmp",
+    name: "ICMP (Internet Control Message Protocol - RFC 792)",
+    layer: 3,
+    layerName: "Network Layer",
+    pdu: "Packet",
+    description: "Core network layer reporting protocol. Communicates delivery success, failures (Destination Unreachable), TTL expirations (traceroute), and network diagnostics (ping echo request/reply). Does not correct errors; only reports them.",
+    totalLengthStandard: "8 bytes base header + variable data (IP header + 8 bytes of original packet)",
+    fields: [
+      {
+        name: "Type",
+        bits: "8 bits",
+        offset: "Bit 0 to 7",
+        defaultValue: "8 (Echo Request) or 0 (Echo Reply)",
+        desc: "Defines the broad category of the ICMP message: 0=Echo Reply, 3=Destination Unreachable, 5=Redirect, 8=Echo Request, 11=Time Exceeded (TTL=0 in transit)."
+      },
+      {
+        name: "Code",
+        bits: "8 bits",
+        offset: "Bit 8 to 15",
+        defaultValue: "0 (Subtype)",
+        desc: "Specifies granular reason for the Type. For Type 3: 0=Net Unreachable, 1=Host Unreachable, 3=Port Unreachable, 4=Fragmentation Needed (DF set)."
+      },
+      {
+        name: "Checksum",
+        bits: "16 bits",
+        offset: "Bit 16 to 31",
+        defaultValue: "16-bit 1's complement",
+        desc: "Covers the entire ICMP message (header + data) to verify delivery integrity."
+      },
+      {
+        name: "Rest of Header",
+        bits: "32 bits (4 bytes)",
+        offset: "Bit 32 to 63",
+        defaultValue: "Identifier & Sequence Number",
+        desc: "Content depends on Type/Code. For Echo Request/Reply: contains 16-bit ID and 16-bit Sequence Number to match requests with responses. For Type 3 Code 4: contains Next-Hop MTU."
+      },
+      {
+        name: "Data Payload",
+        bits: "Variable (64+ bits)",
+        offset: "Bit 64+",
+        defaultValue: "Original IP header + 8 bytes",
+        desc: "For error reports, contains the entire original IP header plus the first 8 bytes of the datagram payload that caused the fault, allowing sender to identify which socket errored."
+      }
+    ]
+  },
+
+  arp: {
+    id: "arp",
+    name: "ARP (Address Resolution Protocol - RFC 826)",
+    layer: 2,
+    layerName: "Data Link / Network Inter-Layer",
+    pdu: "Frame Payload (ARP Message)",
+    description: "Resolves known Layer 3 logical IP addresses into Layer 2 physical MAC addresses for local delivery. Relies on broadcast requests ('Who has 192.168.1.1?') and unicast replies ('I have it at 00:1A:2B:3C:4D:5E'). IPv6 replaces ARP with NDP (Neighbor Discovery Protocol).",
+    totalLengthStandard: "28 bytes fixed payload within Ethernet frame",
+    fields: [
+      {
+        name: "Hardware Type (HTYPE)",
+        bits: "16 bits",
+        offset: "Bytes 0 to 1",
+        defaultValue: "0x0001 (Ethernet)",
+        desc: "Specifies the network link-layer type. 1 represents Ethernet (10Mb/100Mb/1Gb/10Gb)."
+      },
+      {
+        name: "Protocol Type (PTYPE)",
+        bits: "16 bits",
+        offset: "Bytes 2 to 3",
+        defaultValue: "0x0800 (IPv4)",
+        desc: "Specifies the internetwork protocol for which the address is resolved (0x0800 for IPv4)."
+      },
+      {
+        name: "Hardware Address Length (HLEN)",
+        bits: "8 bits",
+        offset: "Byte 4",
+        defaultValue: "6 (Ethernet MAC length)",
+        desc: "Length in octets of a hardware physical address (6 octets = 48 bits for MAC)."
+      },
+      {
+        name: "Protocol Address Length (PLEN)",
+        bits: "8 bits",
+        offset: "Byte 5",
+        defaultValue: "4 (IPv4 address length)",
+        desc: "Length in octets of a logical network address (4 octets = 32 bits for IPv4)."
+      },
+      {
+        name: "Opcode (Operation)",
+        bits: "16 bits",
+        offset: "Bytes 6 to 7",
+        defaultValue: "1 (Request) or 2 (Reply)",
+        desc: "Specifies operation: 1 for ARP Request (broadcast), 2 for ARP Reply (unicast), 3 for RARP Request, 4 for RARP Reply."
+      },
+      {
+        name: "Sender Hardware Address (SHA)",
+        bits: "48 bits (6 bytes)",
+        offset: "Bytes 8 to 13",
+        defaultValue: "e.g. 3C:52:82:11:22:33",
+        desc: "Physical MAC address of the node sending the ARP message."
+      },
+      {
+        name: "Sender Protocol Address (SPA)",
+        bits: "32 bits (4 bytes)",
+        offset: "Bytes 14 to 17",
+        defaultValue: "e.g. 192.168.1.105",
+        desc: "Logical IPv4 address of the node sending the ARP message."
+      },
+      {
+        name: "Target Hardware Address (THA)",
+        bits: "48 bits (6 bytes)",
+        offset: "Bytes 18 to 23",
+        defaultValue: "00:00:00:00:00:00 (in Request)",
+        desc: "In an ARP Request, this is zeroed out (unknown). In an ARP Reply, contains target's MAC."
+      },
+      {
+        name: "Target Protocol Address (TPA)",
+        bits: "32 bits (4 bytes)",
+        offset: "Bytes 24 to 27",
+        defaultValue: "e.g. 192.168.1.1",
+        desc: "The destination IPv4 address the sender is attempting to map to a MAC address."
+      }
+    ]
   }
 };
 
@@ -496,7 +618,9 @@ const LAYER_DETAILS = {
         { type: "Broadcast", example: "FF:FF:FF:FF:FF:FF", desc: "Sent to all nodes on the local subnet (e.g. ARP Requests, DHCP Discover)." }
       ],
       switchOperation: "Switches inspect Source MAC addresses to populate the CAM table (MAC-to-port mapping). When forwarding, switches look up Destination MAC: if known, forward out that specific port; if unknown or broadcast, flood out all ports except arrival port.",
-      trailerDeepDive: "Layer 2 is uniquely equipped with a Trailer (FCS / CRC-32) because NIC hardware verifies frame validity immediately upon completion of transmission, discarding defective frames before OS involvement."
+      trailerDeepDive: "Layer 2 is uniquely equipped with a Trailer (FCS / CRC-32) because NIC hardware verifies frame validity immediately upon completion of transmission, discarding defective frames before OS involvement.",
+      mtuAndFraming: "Standard Ethernet MTU is 1500 bytes (resulting in 64-1518 byte frames). Exceptions: 802.1Q VLAN tagging inserts a 4-byte tag (up to 1522 bytes); Enterprise networks and SANs support Jumbo Frames with MTUs up to 9,198 bytes.",
+      arpMechanics: "ARP maps IP to MAC via broadcast requests and unicast replies. Entries are Dynamic (cached from broadcasts) or Static (manually configured). Security issues: Duplicate MAC addresses cause switch CAM table fluttering; ARP spoofing redirects local traffic maliciously."
     }
   },
   3: {
@@ -506,8 +630,8 @@ const LAYER_DETAILS = {
     accent: "blue",
     pdu: "Packet",
     mnemonic: "Packets ('Peanut')",
-    hardware: "Routers, Layer 3 Switches, Gateways, Firewalls",
-    protocols: "IPv4, IPv6, ICMP, ICMPv6, ARP (inter-layer), OSPF, BGP, RIP",
+    hardware: "Routers, Layer 3 Multilayer Switches, Gateways, Firewalls",
+    protocols: "IPv4, IPv6, ICMP, ICMPv6, ARP (inter-layer), OSPF, EIGRP, BGP, RIP",
     summary: "Handles end-to-end logical addressing and path determination (routing) across interconnected networks. Encapsulates transport segments into packets.",
     deepDive: {
       ipv4Classes: [
@@ -534,7 +658,29 @@ const LAYER_DETAILS = {
         { type: "Unique Local", prefix: "fc00::/7 & fd00::/8", desc: "Equivalent to IPv4 private addresses for internal organization routing." },
         { type: "Multicast", prefix: "ff00::/8", desc: "Replaces IPv4 broadcasting; delivered to subscribed groups." },
         { type: "Loopback", prefix: "::1/128", desc: "IPv6 local loopback." }
-      ]
+      ],
+      routingArchitecture: {
+        routerRoles: [
+          { role: "Core / Interior Routers", desc: "Direct traffic strictly between subnets within the same Autonomous System (AS)." },
+          { role: "Edge / Border Routers", desc: "Positioned at perimeter of an AS to connect with external ISPs and other networks." },
+          { role: "Exterior Routers", desc: "Operate outside the organization's AS, directing traffic between separate Autonomous Systems across the Internet." }
+        ],
+        layer3SwitchVsRouter: "A Layer 3 Switch routes IP packets using specialized hardware Application-Specific Integrated Circuits (ASICs), making packet forwarding much faster and cheaper than software-based traditional routers. However, routers support diverse WAN interfaces and complex NAT/firewall policies.",
+        metricsAndAD: [
+          { metric: "Hop Count", desc: "Number of router hops (RIP limit = 15)." },
+          { metric: "Bandwidth & Throughput", desc: "Theoretical capacity vs actual measured data flow." },
+          { metric: "Delay / Latency", desc: "Time for packet to traverse the path." },
+          { metric: "Cost", desc: "Arbitrary metric assigned by network engineers or inversely proportional to link bandwidth (OSPF)." },
+          { metric: "Administrative Distance (AD)", desc: "Reliability score: Connected=0, Static=1, eBGP=20, EIGRP=90, OSPF=110, RIP=120." }
+        ],
+        routingProtocols: [
+          { name: "RIP / RIPv2", type: "IGP", algorithm: "Distance-Vector", metric: "Hop count (max 15)", desc: "Periodic broadcast updates, slow convergence, obsolete on enterprise backbones." },
+          { name: "OSPF", type: "IGP", algorithm: "Link-State", metric: "Cost (Bandwidth)", desc: "Dijkstra SPF algorithm, area hierarchy, zero hop limit, fast convergence." },
+          { name: "IS-IS", type: "IGP", algorithm: "Link-State", metric: "Cost", desc: "Core ISP backbone protocol; scalable with native IPv6 support." },
+          { name: "EIGRP", type: "IGP", algorithm: "Advanced Distance-Vector (Hybrid)", metric: "Bandwidth + Delay", desc: "Cisco DUAL algorithm, composite metric, low network overhead." },
+          { name: "BGP", type: "EGP", algorithm: "Path-Vector", metric: "AS-Path & Policies", desc: "The 'Protocol of the Internet', coordinates routing between Autonomous Systems." }
+        ]
+      }
     }
   },
   4: {
@@ -544,11 +690,12 @@ const LAYER_DETAILS = {
     accent: "amber",
     pdu: "Segment (TCP) / Datagram (UDP)",
     mnemonic: "Segments ('Some')",
-    hardware: "End-host operating systems, Layer 4 Load Balancers, Stateful Firewalls",
+    hardware: "End-host operating systems, Layer 4 Application/Content Switches, Stateful Firewalls",
     protocols: "TCP (Transmission Control Protocol), UDP (User Datagram Protocol)",
     summary: "Facilitates end-to-end process-to-process communication across hosts using port numbers. Divides messages into segments/datagrams and manages reliability and flow control.",
     deepDive: {
       socketConcept: "A Socket uniquely identifies an endpoint process on the network and consists of [IP Address] + [Port Number] (e.g. 192.168.1.100:443 or 10.43.3.87:23).",
+      layer4Switches: "Layer 4 Switches (also known as Content or Application Switches) inspect TCP/UDP port headers. This enables advanced application load balancing, SSL termination, and session persistence (sticky sessions) at network backbones.",
       portRanges: [
         { range: "0 – 1023", name: "Well-Known Ports", desc: "Assigned by IANA to system-level server processes (e.g. 20/21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 80 HTTP, 110 POP3, 443 HTTPS)." },
         { range: "1024 – 49151", name: "Registered Ports", desc: "Registered with IANA by software vendors for specific custom applications (e.g. 1433 MSSQL, 3306 MySQL, 3389 RDP, 8080 HTTP-Alt)." },

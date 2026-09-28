@@ -1,0 +1,38 @@
+{
+  "app.js": {
+    "mtime": 1790609264.4283211,
+    "seen": 1790609307.8215592,
+    "ast_hash": "234bdad7fa57a985d855b501f096b0f2",
+    "semantic_hash": ""
+  },
+  "headers-data.js": {
+    "mtime": 1790609049.5553675,
+    "seen": 1790609307.8215656,
+    "ast_hash": "3259c2ca1212fe19d1604c9ef3f12788",
+    "semantic_hash": ""
+  },
+  "quiz-data.js": {
+    "mtime": 1790609074.8345184,
+    "seen": 1790609307.8215685,
+    "ast_hash": "316d26cbded8c9fe9276ea8d043a87c9",
+    "semantic_hash": ""
+  },
+  "simulator.js": {
+    "mtime": 1790609102.7933288,
+    "seen": 1790609307.8215702,
+    "ast_hash": "2a6ee4ebfee092c8e88a135be5b6543b",
+    "semantic_hash": ""
+  },
+  "tools.js": {
+    "mtime": 1790609134.8107786,
+    "seen": 1790609307.8215716,
+    "ast_hash": "9af8d0d21e11cd3435ea413026565cdb",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1790609206.8534563,
+    "seen": 1790609307.8215728,
+    "ast_hash": "9b3c88c98f02e22afbcc537d5679d158",
+    "semantic_hash": ""
+  }
+}

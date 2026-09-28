@@ -198,5 +198,70 @@ const QUIZ_QUESTIONS = [
     ],
     answer: 1,
     explanation: "The server generates its own Initial Sequence Number (e.g. Seq=300) and acknowledges the client's SYN by incrementing the client's Seq by 1 (Ack = 100 + 1 = 101), because SYN consumes 1 sequence number."
+  },
+  {
+    id: 16,
+    layer: 3,
+    question: "What primary advantage does OSPF (Open Shortest Path First) offer over RIP (Routing Information Protocol)?",
+    options: [
+      "OSPF is distance-vector and uses hop count exclusively",
+      "OSPF is a link-state protocol with no hop limit, fast convergence, and path calculations based on bandwidth cost",
+      "OSPF operates at Layer 2, bypassing IP routing entirely",
+      "OSPF is proprietary to Cisco hardware only"
+    ],
+    answer: 1,
+    explanation: "RIP is a distance-vector protocol limited to 15 hops with slow periodic updates. OSPF is an open standard link-state protocol using Dijkstra's SPF algorithm, imposing no hop limits, maintaining link-state databases, and providing rapid convergence with low overhead."
+  },
+  {
+    id: 17,
+    layer: 3,
+    question: "Why are Multilayer (Layer 3) Switches typically faster and less expensive than traditional software routers for internal LAN routing?",
+    options: [
+      "Layer 3 switches do not inspect IP addresses",
+      "Layer 3 switches perform packet forwarding in dedicated hardware Application-Specific Integrated Circuits (ASICs)",
+      "Layer 3 switches eliminate the need for IP subnet masks",
+      "Layer 3 switches use Token Ring protocols"
+    ],
+    answer: 1,
+    explanation: "Layer 3 switches perform hardware-based packet switching using specialized ASICs, which forward packets at wire speed. Traditional routers perform routing lookups in software/general-purpose CPUs, though routers support wider WAN interface varieties."
+  },
+  {
+    id: 18,
+    layer: 3,
+    question: "Which routing protocol is classified as an Exterior Gateway Protocol (EGP) and is known as the 'Protocol of the Internet'?",
+    options: [
+      "EIGRP",
+      "OSPF",
+      "BGP (Border Gateway Protocol)",
+      "IS-IS"
+    ],
+    answer: 2,
+    explanation: "BGP is the only current Exterior Gateway Protocol (EGP). It uses a path-vector algorithm to route packets across separate Autonomous Systems (AS) spanning ISPs and global backbones."
+  },
+  {
+    id: 19,
+    layer: 3,
+    question: "What is the primary function of ICMP (Internet Control Message Protocol) on an IP network?",
+    options: [
+      "It retransmits lost data packets automatically",
+      "It reports on the success or failure of data delivery (e.g., Destination Unreachable, TTL Exceeded) but does not correct errors",
+      "It assigns dynamic IP addresses to clients",
+      "It encrypts application payloads using SSL/TLS"
+    ],
+    answer: 1,
+    explanation: "ICMP reports network transmission failures and operational telemetry (such as Echo Request/Reply for ping, Time Exceeded for traceroute, and Destination Unreachable). It notifies senders of errors but does not perform error recovery."
+  },
+  {
+    id: 20,
+    layer: 3,
+    question: "On IPv6 networks, which protocol replaces both ARP and broadcast functions to automatically discover neighboring nodes?",
+    options: [
+      "APIPA",
+      "NDP (Neighbor Discovery Protocol)",
+      "DHCPv4",
+      "NAT-PT"
+    ],
+    answer: 1,
+    explanation: "IPv6 completely eliminates broadcast addressing and ARP. Neighbor discovery, address resolution, and router advertisements are handled by NDP (Neighbor Discovery Protocol) running over ICMPv6 multicast."
   }
 ];

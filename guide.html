@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OSI Layers 1–4 Architectural & Protocol Guide</title>
+  <style>
+    @page {
+      size: letter;
+      margin: 0.75in;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      color: #1e293b;
+      background: #ffffff;
+      font-size: 10pt;
+    }
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      font-weight: 700;
+      page-break-after: avoid;
+    }
+    h1 { font-size: 20pt; border-bottom: 2px solid #3b82f6; padding-bottom: 6px; margin-bottom: 8px; }
+    h2 { font-size: 14pt; border-bottom: 1px solid #cbd5e1; padding-bottom: 4px; margin-top: 18px; margin-bottom: 8px; color: #1e40af; }
+    h3 { font-size: 11pt; margin-top: 12px; margin-bottom: 4px; color: #0369a1; }
+    h4 { font-size: 10pt; margin-top: 8px; margin-bottom: 2px; }
+    p { margin-bottom: 6px; }
+    ul, ol { margin-top: 2px; margin-bottom: 6px; padding-left: 20px; }
+    li { margin-bottom: 2px; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; background: #f1f5f9; padding: 1px 4px; border-radius: 3px; font-size: 9pt; }
+    pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; background: #0f172a; color: #f8fafc; padding: 10px; border-radius: 6px; font-size: 8.5pt; overflow-x: auto; margin-bottom: 8px; line-height: 1.35; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 8.5pt; page-break-inside: avoid; }
+    th, td { border: 1px solid #cbd5e1; padding: 5px 8px; text-align: left; }
+    th { background: #f8fafc; font-weight: 600; color: #0f172a; }
+    tr:nth-child(even) { background: #f8fafc; }
+    .badge { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 8pt; font-weight: 600; font-family: monospace; }
+    .badge-l4 { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+    .badge-l3 { background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; }
+    .badge-l2 { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+    .badge-l1 { background: #f3e8ff; color: #6b21a8; border: 1px solid #d8b4fe; }
+    .callout { background: #f0fdf4; border-left: 4px solid #10b981; padding: 8px 12px; margin-bottom: 10px; border-radius: 0 4px 4px 0; }
+    .callout-title { font-weight: 700; color: #065f46; margin-bottom: 2px; font-size: 9.5pt; }
+    .page-break { page-break-before: always; }
+  </style>
+</head>
+<body>
+
+  <!-- Cover / Header -->
+  <div>
+    <div style="font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: 600;">
+      CSCI 250 Computer Networks • Complete Technical Reference
+    </div>
+    <h1>OSI Layers 1–4 Architectural & Protocol Guide</h1>
+    <div style="font-size: 10pt; color: #475569; margin-bottom: 15px;">
+      In-depth specifications of physical signaling, data link framing & trailers, network routing & addressing, transport protocols, and diagnostics.
+    </div>
+  </div>
+
+  <!-- Section 1 -->
+  <h2>1. Layered Architecture & Protocol Data Units (PDUs)</h2>
+  <p>
+    Modern network communication organizes protocols into discrete hierarchical abstraction layers. As application data travels down the stack at the sending host, each layer wraps the payload with layer-specific control headers (and trailers), creating a distinct <strong>Protocol Data Unit (PDU)</strong>.
+  </p>
+  <ul>
+    <li><strong>SDU (Service Data Unit):</strong> The pure payload delivered from an upper layer before encapsulation.</li>
+    <li><strong>PDU (Protocol Data Unit):</strong> The encapsulated block (<code style="background:#e2e8f0;">PDU = Header + SDU + Trailer</code>).</li>
+    <li><strong>Standard PDU Mnemonic:</strong> <em>"Don't Spill Peanut Flavor Bits"</em> → Data (L7–5), <strong>S</strong>egments (L4), <strong>P</strong>ackets (L3), <strong>F</strong>rames (L2), <strong>B</strong>its (L1).</li>
+  </ul>
+
+  <table>
+    <thead>
+      <tr>
+        <th>OSI Layer</th>
+        <th>PDU Name</th>
+        <th>Addressing Scheme</th>
+        <th>Core Protocols</th>
+        <th>Hardware & Connectivity Devices</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Layer 4: Transport</strong></td>
+        <td>Segment (TCP) / Datagram (UDP)</td>
+        <td>Port Numbers (16-bit, 0–65535)</td>
+        <td>TCP, UDP</td>
+        <td>End hosts, L4 Content/Application Switches</td>
+      </tr>
+      <tr>
+        <td><strong>Layer 3: Network</strong></td>
+        <td>Packet</td>
+        <td>Logical IP (IPv4 32-bit, IPv6 128-bit)</td>
+        <td>IPv4, IPv6, ICMP, ICMPv6, ARP, OSPF, BGP</td>
+        <td>Routers, Layer 3 Multilayer Switches</td>
+      </tr>
+      <tr>
+        <td><strong>Layer 2: Data Link</strong></td>
+        <td>Frame</td>
+        <td>Physical MAC (48-bit hex)</td>
+        <td>Ethernet (802.3), Wi-Fi (802.11)</td>
+        <td>Layer 2 Switches, NICs, Bridges, WAPs</td>
+      </tr>
+      <tr>
+        <td><strong>Layer 1: Physical</strong></td>
+        <td>Bits</td>
+        <td>None (Physical Signals)</td>
+        <td>1000BASE-T, 10GBASE-SR, 802.11 RF</td>
+        <td>Hubs, Repeaters, Cabling, Transceivers</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Section 2 -->
+  <h2>2. Layer 1: Physical Layer Architecture</h2>
+  <p>
+    Layer 1 coordinates the transmission of unstructured raw binary bitstreams across physical transmission media via electrical voltages, optical pulses, or radio frequencies.
+  </p>
+  <ul>
+    <li><strong>Media Types:</strong> Twisted-pair copper (Cat5e/6/6a UTP/STP), Fiber optic (Single-mode for long-haul lasers, Multimode for local LEDs/VCSELs), Wireless radio waves (2.4 GHz, 5 GHz, 6 GHz).</li>
+    <li><strong>Line Encoding:</strong> Converts binary 1s and 0s into media transitions (e.g. Manchester encoding for 10BASE-T, PAM-4 pulse amplitude modulation for 10Gbps Ethernet).</li>
+    <li><strong>Cabling Standards:</strong> TIA/EIA-568A and TIA/EIA-568B pinout configurations for RJ-45 connectors. Straight-through cables connect dissimilar devices (PC to Switch); Crossover cables connect similar devices (Switch to Switch). Modern switches support Auto-MDIX to eliminate crossover cable requirements.</li>
+    <li><strong>Physical Topologies:</strong>
+      <ul>
+        <li><strong>Star:</strong> Central switch/hub. Most scalable; single cable failure affects only one host. Switch is single point of failure.</li>
+        <li><strong>Mesh:</strong> Interconnected redundant paths. Highest fault tolerance; expensive cabling.</li>
+        <li><strong>Bus:</strong> Single backbone terminated with resistors. A single break halts the whole segment.</li>
+        <li><strong>Ring:</strong> Sequential token-passing loop. Single break halts communication unless dual-ring (FDDI).</li>
+      </ul>
+    </li>
+  </ul>
+
+  <!-- Section 3 -->
+  <div class="page-break"></div>
+  <h2>3. Layer 2: Data Link Layer & Ethernet II Framing</h2>
+  <p>
+    Layer 2 manages local hop-to-hop communication within a single broadcast domain or subnet. It packages network packets into <strong>frames</strong>, governs media access (CSMA/CD on shared copper, CSMA/CA on Wi-Fi), and validates transmission integrity.
+  </p>
+
+  <h3>MAC Hardware Addressing (48 Bits / 6 Bytes)</h3>
+  <p>
+    Every NIC possesses a burned-in MAC address formatted as six pairs of hexadecimal digits (e.g., <code>00:1A:2B:3C:4D:5E</code>):
+  </p>
+  <ul>
+    <li><strong>OUI (Organizationally Unique Identifier):</strong> First 24 bits (3 octets) assigned by the IEEE to identify the hardware vendor.</li>
+    <li><strong>Device ID / Extension Identifier:</strong> Last 24 bits assigned uniquely by the vendor to the NIC.</li>
+    <li><strong>Address Scopes:</strong> Unicast (individual NIC), Multicast (starts with <code>01:00:5E</code> for IPv4), Broadcast (<code>FF:FF:FF:FF:FF:FF</code>).</li>
+  </ul>
+
+  <h3>Ethernet II Frame Specification (with FCS Trailer)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Field Name</th>
+        <th>Length</th>
+        <th>Offset</th>
+        <th>Purpose & Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Preamble</td>
+        <td>7 Bytes (56 bits)</td>
+        <td>Bytes -8 to -2</td>
+        <td>Alternating <code>10101010</code> pattern for receiver clock synchronization.</td>
+      </tr>
+      <tr>
+        <td>Start of Frame Delimiter (SFD)</td>
+        <td>1 Byte (8 bits)</td>
+        <td>Byte -1</td>
+        <td>Binary <code>10101011</code>; signals the immediate start of destination MAC.</td>
+      </tr>
+      <tr>
+        <td>Destination MAC</td>
+        <td>6 Bytes (48 bits)</td>
+        <td>Bytes 0 to 5</td>
+        <td>Physical address of destination interface on local link.</td>
+      </tr>
+      <tr>
+        <td>Source MAC</td>
+        <td>6 Bytes (48 bits)</td>
+        <td>Bytes 6 to 11</td>
+        <td>Physical address of sender interface. Inspected by switches to populate CAM table.</td>
+      </tr>
+      <tr>
+        <td>EtherType</td>
+        <td>2 Bytes (16 bits)</td>
+        <td>Bytes 12 to 13</td>
+        <td>Identifies encapsulated L3 protocol: <code>0x0800</code> (IPv4), <code>0x86DD</code> (IPv6), <code>0x0806</code> (ARP).</td>
+      </tr>
+      <tr>
+        <td>Payload (L3 SDU)</td>
+        <td>46 to 1500 Bytes</td>
+        <td>Bytes 14 to 1513</td>
+        <td>Encapsulated IP packet. Minimum 46 bytes (padded to ensure 64-byte minimum frame size).</td>
+      </tr>
+      <tr style="background:#ecfdf5;">
+        <td><strong>Frame Check Sequence (FCS Trailer)</strong></td>
+        <td><strong>4 Bytes (32 bits)</strong></td>
+        <td><strong>Trailing 4B</strong></td>
+        <td><strong>32-bit Cyclic Redundancy Check (CRC-32) calculated across the entire frame.</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-title">★ Architectural Principle: Why Only Layer 2 Has a Physical Trailer</div>
+    As bits stream serially out of a transmitting NIC, dedicated hardware shift-registers compute the CRC-32 polynomial continuously on the fly across the payload. Placing the FCS at the tail allows the receiving NIC to evaluate the CRC simultaneously as the last bit arrives over the wire. If a bit error occurred, the NIC hardware drops the corrupted frame immediately before spending CPU cycles or allocating host operating system RAM.
+  </div>
+
+  <h3>MTU, VLAN Tagging, and Jumbo Frames</h3>
+  <ul>
+    <li><strong>Standard MTU:</strong> 1500 bytes (standard Ethernet frame: 64 to 1518 bytes).</li>
+    <li><strong>VLAN Tagging (IEEE 802.1Q):</strong> Inserts a 4-byte VLAN tag between Source MAC and EtherType, increasing maximum frame size to 1522 bytes.</li>
+    <li><strong>Jumbo Frames:</strong> Supported by enterprise data centers and SANs; allows MTUs up to 9,198 bytes to reduce CPU packet-processing overhead.</li>
+  </ul>
+
+  <h3>Address Resolution Protocol (ARP - RFC 826)</h3>
+  <p>
+    Bridges Layer 2 and Layer 3 by resolving known IPv4 addresses to physical MAC addresses.
+  </p>
+  <ul>
+    <li><strong>ARP Request:</strong> Sent as a broadcast (<code>FF:FF:FF:FF:FF:FF</code>) asking "Who owns IP X.X.X.X? Tell my MAC."</li>
+    <li><strong>ARP Reply:</strong> Returned as a unicast directly to the requester containing the target's MAC address.</li>
+    <li><strong>ARP Table:</strong> Contains Dynamic entries (learned automatically via broadcasts, expired via aging timers) and Static entries (manually pinned with <code>arp -s</code>).</li>
+    <li><strong>Security Concerns:</strong> Duplicate MAC addresses cause switch CAM table fluttering; ARP spoofing redirects traffic to an attacker by sending unsolicited ARP replies.</li>
+  </ul>
+
+  <!-- Section 4 -->
+  <div class="page-break"></div>
+  <h2>4. Layer 3: Network Layer, IP Addressing & Routing Architecture</h2>
+  <p>
+    Layer 3 provides logical host addressing and determines optimal end-to-end paths across interconnected networks (internetworking).
+  </p>
+
+  <h3>IPv4 Header (RFC 791) — 20 to 60 Bytes</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Bits</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Version</td>
+        <td>4</td>
+        <td>Always <code>0100</code> (4).</td>
+      </tr>
+      <tr>
+        <td>IHL</td>
+        <td>4</td>
+        <td>Internet Header Length in 32-bit words (minimum 5 words = 20 bytes).</td>
+      </tr>
+      <tr>
+        <td>DSCP / ECN</td>
+        <td>6 / 2</td>
+        <td>Differentiated Services (QoS priority) and Explicit Congestion Notification.</td>
+      </tr>
+      <tr>
+        <td>Total Length</td>
+        <td>16</td>
+        <td>Total packet size (header + data) in bytes (up to 65,535 bytes).</td>
+      </tr>
+      <tr>
+        <td>Identification</td>
+        <td>16</td>
+        <td>Unique ID assigned to reassemble fragmented IP packets at the destination.</td>
+      </tr>
+      <tr>
+        <td>Flags</td>
+        <td>3</td>
+        <td>Bit 0: Reserved (0), Bit 1: DF (Don't Fragment), Bit 2: MF (More Fragments).</td>
+      </tr>
+      <tr>
+        <td>Fragment Offset</td>
+        <td>13</td>
+        <td>Offset of fragment relative to beginning of original datagram (in 8-byte units).</td>
+      </tr>
+      <tr>
+        <td>Time to Live (TTL)</td>
+        <td>8</td>
+        <td>Hop limit decremented by 1 at every router hop. Prevents endless routing loops.</td>
+      </tr>
+      <tr>
+        <td>Protocol</td>
+        <td>8</td>
+        <td>Encapsulated L4 protocol: 1 (ICMP), 6 (TCP), 17 (UDP), 89 (OSPF).</td>
+      </tr>
+      <tr>
+        <td>Header Checksum</td>
+        <td>16</td>
+        <td>1's complement sum covering header only. Recalculated at every router hop as TTL decrements.</td>
+      </tr>
+      <tr>
+        <td>Source IP</td>
+        <td>32</td>
+        <td>Originating host IPv4 address.</td>
+      </tr>
+      <tr>
+        <td>Destination IP</td>
+        <td>32</td>
+        <td>Target host IPv4 address.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>IPv6 Header (RFC 8200) — Fixed 40 Bytes</h3>
+  <p>
+    Streamlined base header with fixed 40-byte length. Eliminates router fragmentation (handled by source) and eliminates the header checksum to accelerate hardware forwarding.
+  </p>
+  <ul>
+    <li><strong>Key Fields:</strong> Version (4b), Traffic Class (8b), Flow Label (20b, identifies real-time streaming flows), Payload Length (16b), Next Header (8b, points to L4 protocol or chained Extension Header), Hop Limit (8b, replaces TTL), Source IPv6 (128b), Destination IPv6 (128b).</li>
+    <li><strong>Neighbor Discovery Protocol (NDP):</strong> Replaces ARP and ICMP broadcast functions in IPv6 using multicast ICMPv6 messages (Router Solicitation/Advertisement, Neighbor Solicitation/Advertisement).</li>
+  </ul>
+
+  <h3>IPv4 Address Classes & Special Scopes</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Class / Scope</th>
+        <th>Address Range</th>
+        <th>Default CIDR</th>
+        <th>Purpose & Characteristic</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Class A</td>
+        <td>1.0.0.0 – 126.255.255.255</td>
+        <td>/8 (255.0.0.0)</td>
+        <td>126 networks, 16.7M hosts/network.</td>
+      </tr>
+      <tr>
+        <td>Class B</td>
+        <td>128.0.0.0 – 191.255.255.255</td>
+        <td>/16 (255.255.0.0)</td>
+        <td>16,384 networks, 65,534 hosts/network.</td>
+      </tr>
+      <tr>
+        <td>Class C</td>
+        <td>192.0.0.0 – 223.255.255.255</td>
+        <td>/24 (255.255.255.0)</td>
+        <td>2.09M networks, 254 hosts/network.</td>
+      </tr>
+      <tr>
+        <td>Class D</td>
+        <td>224.0.0.0 – 239.255.255.255</td>
+        <td>N/A</td>
+        <td>Multicast traffic (delivering packets to subscribed groups).</td>
+      </tr>
+      <tr>
+        <td>Class E</td>
+        <td>240.0.0.0 – 254.255.255.255</td>
+        <td>N/A</td>
+        <td>Experimental / Research.</td>
+      </tr>
+      <tr>
+        <td>Loopback</td>
+        <td>127.0.0.1 – 127.255.255.254</td>
+        <td>/8</td>
+        <td>Internal host self-reference.</td>
+      </tr>
+      <tr>
+        <td>APIPA</td>
+        <td>169.254.0.1 – 169.254.255.254</td>
+        <td>/16</td>
+        <td>Self-assigned when DHCP server is unreachable.</td>
+      </tr>
+      <tr>
+        <td>RFC 1918 Private</td>
+        <td>10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16</td>
+        <td>Various</td>
+        <td>Non-routable on public Internet; requires NAT/PAT.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Routing Protocols & Router Roles (Chapter 4)</h3>
+  <ul>
+    <li><strong>Router Roles:</strong>
+      <ul>
+        <li><em>Core / Interior Routers:</em> Direct traffic within the interior of an Autonomous System (AS).</li>
+        <li><em>Edge / Border Routers:</em> Positioned at AS perimeter to interface with external networks.</li>
+        <li><em>Exterior Routers:</em> Direct traffic between separate Autonomous Systems across the Internet.</li>
+      </ul>
+    </li>
+    <li><strong>Multilayer Switching (Layer 3 Switches):</strong> Routes packets via hardware ASICs at wire speed, offering greater throughput and lower latency than traditional software routers on campus LANs.</li>
+    <li><strong>Routing Protocols:</strong>
+      <ul>
+        <li><strong>RIP / RIPv2 (IGP):</strong> Distance-vector; uses hop count metric (max 15 hops; 16 = unreachable). Periodic 30s broadcast updates.</li>
+        <li><strong>OSPF (IGP):</strong> Link-state; uses Dijkstra's Shortest Path First (SPF) algorithm, areas, and bandwidth cost metric. Fast convergence, no hop limit.</li>
+        <li><strong>IS-IS (IGP):</strong> Link-state; preferred by core ISPs for massive scalability and native IPv6 support.</li>
+        <li><strong>EIGRP (IGP):</strong> Advanced distance-vector / hybrid; uses DUAL algorithm and composite metric (bandwidth + delay).</li>
+        <li><strong>BGP (EGP):</strong> Path-vector; the "Protocol of the Internet", connecting Autonomous Systems using policies and AS-Path attributes.</li>
+      </ul>
+    </li>
+    <li><strong>Administrative Distance (AD):</strong> Protocol trustworthiness rating (lower wins): Connected (0), Static (1), eBGP (20), EIGRP (90), OSPF (110), RIP (120).</li>
+  </ul>
+
+  <!-- Section 5 -->
+  <div class="page-break"></div>
+  <h2>5. Layer 4: Transport Layer, TCP vs. UDP & Sockets</h2>
+  <p>
+    Layer 4 enables end-to-end process-to-process communication between applications using port addressing. A <strong>Socket</strong> represents an endpoint process: <code>[IP Address] : [Port Number]</code>.
+  </p>
+
+  <h3>IANA Port Number Ranges</h3>
+  <ul>
+    <li><strong>Well-Known Ports (0–1023):</strong> Assigned to core server processes (e.g., 20/21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 80 HTTP, 110 POP3, 443 HTTPS, 3389 RDP).</li>
+    <li><strong>Registered Ports (1024–49151):</strong> Registered for commercial applications (e.g., 1433 MSSQL, 3306 MySQL).</li>
+    <li><strong>Dynamic / Private / Ephemeral Ports (49152–65535):</strong> Assigned dynamically by client OSs for outbound sessions.</li>
+  </ul>
+
+  <h3>TCP vs. UDP Deep Comparison</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>TCP (Transmission Control Protocol)</th>
+        <th>UDP (User Datagram Protocol)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Connection State</td>
+        <td>Connection-oriented (Requires 3-way Handshake)</td>
+        <td>Connectionless (Fire-and-forget, no handshake)</td>
+      </tr>
+      <tr>
+        <td>Reliability</td>
+        <td>Guaranteed delivery (Retransmits lost segments)</td>
+        <td>Best-effort (No loss detection or retransmission)</td>
+      </tr>
+      <tr>
+        <td>Ordering</td>
+        <td>Strictly ordered via 32-bit Sequence Numbers</td>
+        <td>Packets may arrive out-of-order</td>
+      </tr>
+      <tr>
+        <td>Header Size</td>
+        <td>20 to 60 Bytes</td>
+        <td>Fixed 8 Bytes</td>
+      </tr>
+      <tr>
+        <td>Checksum</td>
+        <td>Mandatory (IPv4 & IPv6)</td>
+        <td>Optional in IPv4, Mandatory in IPv6</td>
+      </tr>
+      <tr>
+        <td>Flow & Congestion Control</td>
+        <td>Sliding Windows, Slow Start, Congestion Avoidance</td>
+        <td>None (Transmits at application rate)</td>
+      </tr>
+      <tr>
+        <td>Primary Use Cases</td>
+        <td>Web (HTTP/S), Email (SMTP), File Transfer (FTP), SSH</td>
+        <td>DNS queries, DHCP, VoIP, Live Video, Gaming</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>TCP Segment Header Fields (20 to 60 Bytes)</h3>
+  <ul>
+    <li><strong>Source & Destination Ports (16b each):</strong> Identifies sending and receiving processes.</li>
+    <li><strong>Sequence Number (32b):</strong> Tracks byte stream position. Initial ISN randomized during handshake.</li>
+    <li><strong>Acknowledgment Number (32b):</strong> Next expected byte sequence number from peer when ACK flag is set.</li>
+    <li><strong>Data Offset (4b):</strong> Header length in 32-bit words (5 words = 20 bytes).</li>
+    <li><strong>9 Control Flags (9b):</strong>
+      <code>SYN</code> (initiate connection), <code>ACK</code> (acknowledgment valid), <code>FIN</code> (graceful close), <code>RST</code> (reset connection), <code>PSH</code> (push data immediately to app), <code>URG</code> (urgent pointer valid), <code>ECE</code> / <code>CWR</code> (congestion notifications), <code>NS</code> (nonce sum).</li>
+    <li><strong>Window Size (16b):</strong> Flow control; number of bytes receiver can buffer without acknowledgment.</li>
+    <li><strong>Checksum (16b):</strong> Verifies pseudo-header (IPs, protocol), TCP header, and payload.</li>
+  </ul>
+
+  <h3>TCP 3-Way Handshake & Graceful Teardown</h3>
+  <pre>
+Client (192.168.1.105:52144)                   Server (93.184.216.34:80)
+   CLOSED                                                 LISTEN
+      |                                                     |
+      | -------- [SYN] Seq=1000, Ack=0 -------------------->|  (SYN-RCVD)
+(SYN-SENT)                                                  |
+      | <------- [SYN, ACK] Seq=5000, Ack=1001 -------------|
+      |                                                     |
+(ESTABLISHED)                                               |
+      | -------- [ACK] Seq=1001, Ack=5001 ----------------->|  (ESTABLISHED)
+      |                                                     |
+      | ========= Full-Duplex Data Transmission =========== |
+      |                                                     |
+      | -------- [FIN, ACK] Seq=1025, Ack=5001 ------------>|  (CLOSE-WAIT)
+ (FIN-WAIT-1)                                               |
+      | <------- [ACK] Seq=5001, Ack=1026 ------------------|
+ (FIN-WAIT-2)                                               |
+      | <------- [FIN, ACK] Seq=5001, Ack=1026 -------------|  (LAST-ACK)
+      |                                                     |
+      | -------- [ACK] Seq=1026, Ack=5002 ----------------->|  (CLOSED)
+ (TIME-WAIT: 2MSL)
+      |
+   (CLOSED)
+  </pre>
+
+  <!-- Section 6 -->
+  <div class="page-break"></div>
+  <h2>6. Network Troubleshooting & Diagnostics Command Reference</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Command</th>
+        <th>OS Platform</th>
+        <th>Layer</th>
+        <th>Diagnostic Function</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>ping &lt;target&gt;</code></td>
+        <td>Cross-platform</td>
+        <td>Layer 3</td>
+        <td>Sends ICMP Echo Requests to verify IP connectivity, NIC binding, and round-trip latency.</td>
+      </tr>
+      <tr>
+        <td><code>ifconfig</code> / <code>ip a</code></td>
+        <td>Linux</td>
+        <td>Layer 2–3</td>
+        <td>Displays interface link states, hardware MAC addresses, IP bindings, and packet statistics.</td>
+      </tr>
+      <tr>
+        <td><code>ipconfig /all</code></td>
+        <td>Windows</td>
+        <td>Layer 2–3</td>
+        <td>Full TCP/IP configuration, DHCP lease time, DNS servers, and link-local IPv6 addresses.</td>
+      </tr>
+      <tr>
+        <td><code>arp -a</code></td>
+        <td>Cross-platform</td>
+        <td>Layer 2</td>
+        <td>Displays ARP cache table mapping destination IPv4 addresses to local hardware MAC addresses.</td>
+      </tr>
+      <tr>
+        <td><code>route print</code> / <code>route</code></td>
+        <td>Cross-platform</td>
+        <td>Layer 3</td>
+        <td>Displays the host routing table, default gateway (<code>0.0.0.0</code>), and next-hop interfaces.</td>
+      </tr>
+      <tr>
+        <td><code>netstat -tuln</code> / <code>ss</code></td>
+        <td>Cross-platform</td>
+        <td>Layer 4</td>
+        <td>Lists all active listening TCP and UDP sockets with bound port numbers.</td>
+      </tr>
+      <tr>
+        <td><code>tracert</code> / <code>traceroute</code></td>
+        <td>Cross-platform</td>
+        <td>Layer 3</td>
+        <td>Traces hop-by-hop router path by transmitting packets with incrementing TTL values.</td>
+      </tr>
+      <tr>
+        <td><code>pathping</code></td>
+        <td>Windows</td>
+        <td>Layer 3</td>
+        <td>Combines ping and tracert over 100+ seconds to isolate per-hop packet loss and latency.</td>
+      </tr>
+      <tr>
+        <td><code>tcpdump</code></td>
+        <td>Linux</td>
+        <td>Layers 2–4</td>
+        <td>CLI packet analyzer that captures live frame headers, handshakes, and payloads crossing a NIC.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>7. Summary Checklist for CSCI 250 Examination</h2>
+  <ul>
+    <li>✔ <strong>PDU Sequence:</strong> Data → Segment (L4) → Packet (L3) → Frame (L2) → Bits (L1).</li>
+    <li>✔ <strong>Trailer Purpose:</strong> Only Layer 2 uses an FCS trailer (CRC-32) for instant hardware verification.</li>
+    <li>✔ <strong>MAC vs. IP:</strong> MAC is 48-bit physical hop-to-hop; IP is 32/128-bit logical end-to-end.</li>
+    <li>✔ <strong>TCP vs. UDP:</strong> TCP is connection-oriented, reliable, sequenced, and heavier (20–60B header); UDP is connectionless, lightweight (8B header), and fire-and-forget.</li>
+    <li>✔ <strong>Socket:</strong> IP Address + Port Number (e.g. <code>10.43.3.87:23</code>).</li>
+    <li>✔ <strong>APIPA:</strong> <code>169.254.0.0/16</code> self-assigned when DHCP fails.</li>
+    <li>✔ <strong>Routing:</strong> Distance-Vector (RIP, hop limit 15) vs. Link-State (OSPF, bandwidth cost, no hop limit) vs. Path-Vector (BGP, protocol of the Internet).</li>
+    <li>✔ <strong>Layer 3 Switches:</strong> Forward packets via hardware ASICs at wire speed, faster than software routers.</li>
+  </ul>
+
+</body>
+</html>

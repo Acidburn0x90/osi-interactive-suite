@@ -170,6 +170,49 @@ function initLayerExplorer() {
             </div>
           </div>
         </div>
+
+        <!-- Chapter 4: Routing Architecture & Dynamic Protocols -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div class="bg-slate-900/80 border border-sky-500/30 rounded-xl p-5 shadow-lg">
+            <h4 class="text-sm font-bold text-sky-400 uppercase tracking-wider mb-2">Routing Architecture & Multilayer Switching</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">${l.deepDive.routingArchitecture.layer3SwitchVsRouter}</p>
+            <div class="space-y-2 text-xs">
+              ${l.deepDive.routingArchitecture.routerRoles.map(r => `
+                <div class="bg-slate-950/60 p-2 rounded border border-slate-800">
+                  <strong class="text-white">${r.role}:</strong> <span class="text-slate-400">${r.desc}</span>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+          <div class="bg-slate-900/80 border border-sky-500/30 rounded-xl p-5 shadow-lg">
+            <h4 class="text-sm font-bold text-sky-400 uppercase tracking-wider mb-2">Dynamic Routing Protocols (IGP vs. EGP)</h4>
+            <div class="overflow-x-auto text-xs">
+              <table class="w-full text-left text-slate-300 border-collapse">
+                <thead>
+                  <tr class="border-b border-slate-700 text-sky-400">
+                    <th class="py-1">Protocol</th>
+                    <th class="py-1">Scope</th>
+                    <th class="py-1">Algorithm</th>
+                    <th class="py-1">Metric</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${l.deepDive.routingArchitecture.routingProtocols.map(p => `
+                    <tr class="border-b border-slate-800">
+                      <td class="py-1 font-bold text-white">${p.name}</td>
+                      <td class="py-1 text-amber-300">${p.type}</td>
+                      <td class="py-1 text-slate-400">${p.algorithm}</td>
+                      <td class="py-1 text-emerald-400">${p.metric}</td>
+                    </tr>
+                  `).join("")}
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-3 text-[11px] text-slate-400">
+              <strong class="text-sky-300">Administrative Distance (AD):</strong> Connected=0, Static=1, eBGP=20, EIGRP=90, OSPF=110, RIP=120. (Lower is preferred).
+            </div>
+          </div>
+        </div>
       `;
     } else if (layerNum === 4) {
       subHtml = `

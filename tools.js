@@ -390,6 +390,55 @@ LISTEN     0      50     0.0.0.0:3389             0.0.0.0:*          (RDP)
         `);
         break;
 
+      case "route":
+        this.appendOutput(`
+<span class="text-sky-300 font-bold">Kernel IP routing table (Linux):</span>
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.1.1     0.0.0.0         UG    100    0        0 eth0
+192.168.1.0     0.0.0.0         255.255.255.0   U     100    0        0 eth0
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      0        0 lo
+<span class="text-slate-400">[Default route: 0.0.0.0/0 points to Next Hop Gateway 192.168.1.1 out interface eth0]</span>
+        `);
+        break;
+
+      case "pathping":
+        const ppTarget = arg || "google.com";
+        this.appendOutput(`
+Tracing route to ${this.escapeHtml(ppTarget)} [142.250.190.46] over a maximum of 30 hops:
+  0  LAB-WORKSTATION-01 [192.168.1.105] 
+  1  192.168.1.1 
+  2  10.240.0.1 
+  3  96.120.10.45 
+  4  142.250.190.46 
+
+Computing statistics for 100 seconds...
+            Source to Here   This Node/Link
+Hop  RTT    Lost/Sent = Pct  Lost/Sent = Pct  Address
+  0                                           LAB-WORKSTATION-01 [192.168.1.105]
+                                0/ 100 =  0%   |
+  1    0ms     0/ 100 =  0%     0/ 100 =  0%  192.168.1.1
+                                0/ 100 =  0%   |
+  2    5ms     0/ 100 =  0%     0/ 100 =  0%  10.240.0.1
+                                0/ 100 =  0%   |
+  3   11ms     0/ 100 =  0%     0/ 100 =  0%  96.120.10.45
+<span class="text-slate-400">[Pathping combines ping and tracert to isolate per-hop packet loss and latency]</span>
+        `);
+        break;
+
+      case "tcpdump":
+        this.appendOutput(`
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+11:32:01.102341 IP 192.168.1.105.52144 > 142.250.190.46.80: Flags [S], seq 1000, win 64240, options [mss 1460,sackOK], length 0
+11:32:01.115829 IP 142.250.190.46.80 > 192.168.1.105.52144: Flags [S.], seq 5000, ack 1001, win 65535, options [mss 1430], length 0
+11:32:01.115910 IP 192.168.1.105.52144 > 142.250.190.46.80: Flags [.], ack 5001, win 64240, length 0
+11:32:01.116240 IP 192.168.1.105.52144 > 142.250.190.46.80: Flags [P.], seq 1001:1025, ack 5001, win 64240: HTTP: GET /index.html HTTP/1.1
+11:32:01.129480 IP 142.250.190.46.80 > 192.168.1.105.52144: Flags [.], ack 1025, win 65511, length 0
+5 packets captured, 5 packets received by filter, 0 packets dropped by kernel
+<span class="text-slate-400">[Packet sniffer captured live Layer 2-4 handshakes and payloads crossing the interface]</span>
+        `);
+        break;
+
       case "traceroute":
       case "tracert":
         const trHost = arg || "1.1.1.1";
