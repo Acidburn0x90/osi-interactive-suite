@@ -445,9 +445,13 @@ class TcpHandshakeSimulator {
     ];
 
     const cur = states[s];
+    const stepBadgeEl = document.getElementById("hs-step-badge");
     if (clientStateEl) clientStateEl.textContent = cur.cState;
     if (serverStateEl) serverStateEl.textContent = cur.sState;
     if (statusTextEl) statusTextEl.innerHTML = cur.text;
+    if (stepBadgeEl) {
+      stepBadgeEl.textContent = `Stage ${s} / ${this.maxSteps} : ${s === 0 ? "Initial Idle" : (s <= 3 ? "3-Way Handshake" : (s === 4 ? "Data Payload Transfer" : "Graceful Teardown"))}`;
+    }
 
     if (packetFlightEl) {
       let icon = "⟷";
