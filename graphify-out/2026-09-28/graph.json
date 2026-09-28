@@ -65,7 +65,7 @@
       "file_type": "code",
       "norm_label": "initheaderinspector()",
       "source_file": "app.js",
-      "source_location": "L325"
+      "source_location": "L306"
     },
     {
       "id": "app_initheaderinspector_renderinspector",
@@ -77,7 +77,7 @@
       "file_type": "code",
       "norm_label": "renderinspector()",
       "source_file": "app.js",
-      "source_location": "L329"
+      "source_location": "L310"
     },
     {
       "id": "app_initheaderinspector_showfielddetail",
@@ -89,7 +89,7 @@
       "file_type": "code",
       "norm_label": "showfielddetail()",
       "source_file": "app.js",
-      "source_location": "L407"
+      "source_location": "L388"
     },
     {
       "id": "app_initlayerexplorer",
@@ -101,7 +101,7 @@
       "file_type": "code",
       "norm_label": "initlayerexplorer()",
       "source_file": "app.js",
-      "source_location": "L79"
+      "source_location": "L60"
     },
     {
       "id": "app_initlayerexplorer_renderlayer",
@@ -113,7 +113,7 @@
       "file_type": "code",
       "norm_label": "renderlayer()",
       "source_file": "app.js",
-      "source_location": "L83"
+      "source_location": "L64"
     },
     {
       "id": "app_initnavtabs",
@@ -128,18 +128,6 @@
       "source_location": "L33"
     },
     {
-      "id": "app_initnavtabs_switchview",
-      "label": "switchView()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "app.js",
-      "file_type": "code",
-      "norm_label": "switchview()",
-      "source_file": "app.js",
-      "source_location": "L37"
-    },
-    {
       "id": "app_initnetworktools",
       "label": "initNetworkTools()",
       "_callable": true,
@@ -149,7 +137,7 @@
       "file_type": "code",
       "norm_label": "initnetworktools()",
       "source_file": "app.js",
-      "source_location": "L475"
+      "source_location": "L456"
     },
     {
       "id": "app_initnetworktools_runcalc",
@@ -161,7 +149,7 @@
       "file_type": "code",
       "norm_label": "runcalc()",
       "source_file": "app.js",
-      "source_location": "L482"
+      "source_location": "L463"
     },
     {
       "id": "app_initnetworktools_runeui",
@@ -173,7 +161,7 @@
       "file_type": "code",
       "norm_label": "runeui()",
       "source_file": "app.js",
-      "source_location": "L535"
+      "source_location": "L516"
     },
     {
       "id": "app_initquiz",
@@ -185,7 +173,7 @@
       "file_type": "code",
       "norm_label": "initquiz()",
       "source_file": "app.js",
-      "source_location": "L569"
+      "source_location": "L550"
     },
     {
       "id": "app_initquiz_renderquestion",
@@ -197,7 +185,7 @@
       "file_type": "code",
       "norm_label": "renderquestion()",
       "source_file": "app.js",
-      "source_location": "L577"
+      "source_location": "L558"
     },
     {
       "id": "simulator_packetsimulator_bindevents",
@@ -224,6 +212,18 @@
       "source_location": "L25"
     },
     {
+      "id": "simulator_packetsimulator_play",
+      "label": ".play()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": ".updateUI",
+      "file_type": "code",
+      "norm_label": ".play()",
+      "source_file": "simulator.js",
+      "source_location": "L97"
+    },
+    {
       "id": "simulator_packetsimulator_prevstep",
       "label": ".prevStep()",
       "_callable": true,
@@ -234,6 +234,18 @@
       "norm_label": ".prevstep()",
       "source_file": "simulator.js",
       "source_location": "L82"
+    },
+    {
+      "id": "simulator_packetsimulator_toggleplay",
+      "label": ".togglePlay()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": ".updateUI",
+      "file_type": "code",
+      "norm_label": ".toggleplay()",
+      "source_file": "simulator.js",
+      "source_location": "L89"
     },
     {
       "id": "simulator_tcphandshakesimulator_bindevents",
@@ -344,18 +356,6 @@
       "source_location": "L116"
     },
     {
-      "id": "simulator_packetsimulator_play",
-      "label": ".play()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "PacketSimulator",
-      "file_type": "code",
-      "norm_label": ".play()",
-      "source_file": "simulator.js",
-      "source_location": "L97"
-    },
-    {
       "id": "simulator_packetsimulator_renderstage",
       "label": ".renderStage()",
       "_callable": true,
@@ -390,18 +390,6 @@
       "norm_label": ".stringtobinary()",
       "source_file": "simulator.js",
       "source_location": "L129"
-    },
-    {
-      "id": "simulator_packetsimulator_toggleplay",
-      "label": ".togglePlay()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "PacketSimulator",
-      "file_type": "code",
-      "norm_label": ".toggleplay()",
-      "source_file": "simulator.js",
-      "source_location": "L89"
     },
     {
       "id": "simulator_packetsimulator_updateui",
@@ -562,8 +550,8 @@
       "id": "simulator",
       "label": "simulator.js",
       "_origin": "ast",
-      "community": 1,
-      "community_name": ".updateUI",
+      "community": 2,
+      "community_name": "PacketSimulator",
       "file_type": "code",
       "norm_label": "simulator.js",
       "source_file": "simulator.js",
@@ -646,7 +634,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app.js",
-      "source_location": "L395",
+      "source_location": "L376",
       "weight": 1.0
     },
     {
@@ -1054,7 +1042,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app.js",
-      "source_location": "L329",
+      "source_location": "L310",
       "weight": 1.0
     },
     {
@@ -1066,19 +1054,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app.js",
-      "source_location": "L83",
-      "weight": 1.0
-    },
-    {
-      "source": "app_initnavtabs",
-      "target": "app_initnavtabs_switchview",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "app.js",
-      "source_location": "L37",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -1090,7 +1066,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app.js",
-      "source_location": "L577",
+      "source_location": "L558",
       "weight": 1.0
     },
     {
@@ -1101,7 +1077,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app.js",
-      "source_location": "L325",
+      "source_location": "L306",
       "weight": 1.0
     },
     {
@@ -1123,7 +1099,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app.js",
-      "source_location": "L475",
+      "source_location": "L456",
       "weight": 1.0
     },
     {
@@ -1134,7 +1110,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app.js",
-      "source_location": "L569",
+      "source_location": "L550",
       "weight": 1.0
     },
     {
@@ -1145,7 +1121,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app.js",
-      "source_location": "L79",
+      "source_location": "L60",
       "weight": 1.0
     },
     {
@@ -1156,7 +1132,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app.js",
-      "source_location": "L407",
+      "source_location": "L388",
       "weight": 1.0
     },
     {
@@ -1564,7 +1540,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "app.js",
-      "source_location": "L528",
+      "source_location": "L509",
       "weight": 1.0
     },
     {
@@ -1576,7 +1552,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "app.js",
-      "source_location": "L562",
+      "source_location": "L543",
       "weight": 1.0
     }
   ],

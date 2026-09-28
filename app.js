@@ -34,27 +34,46 @@ function initNavTabs() {
   const tabs = document.querySelectorAll(".nav-tab-btn");
   const views = document.querySelectorAll(".view-section");
 
+  function switchView(targetId) {
+    tabs.forEach(t => {
+      if (t.dataset.target === targetId) {
+        t.classList.add("active");
+        t.classList.remove("text-slate-400", "border-transparent");
+      } else {
+        t.classList.remove("active");
+        t.classList.add("text-slate-400", "border-transparent");
+      }
+    });
+
+    views.forEach(v => {
+      if (v.id === targetId) {
+        v.classList.remove("hidden");
+      } else {
+        v.classList.add("hidden");
+      }
+    });
+  }
+
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       const targetId = tab.dataset.target;
-
-      tabs.forEach(t => {
-        t.classList.remove("active", "border-indigo-500", "text-indigo-400", "bg-slate-800/80");
-        t.classList.add("text-slate-400", "border-transparent", "hover:text-slate-200");
-      });
-
-      tab.classList.add("active", "border-indigo-500", "text-indigo-400", "bg-slate-800/80");
-      tab.classList.remove("text-slate-400", "border-transparent");
-
-      views.forEach(v => {
-        if (v.id === targetId) {
-          v.classList.remove("hidden");
-        } else {
-          v.classList.add("hidden");
-        }
-      });
+      window.location.hash = targetId;
+      switchView(targetId);
     });
   });
+
+  window.addEventListener("hashchange", () => {
+    const hash = window.location.hash.replace("#", "");
+    if (hash && document.getElementById(hash)) {
+      switchView(hash);
+    }
+  });
+
+  // Activate initial view from hash if present
+  const initialHash = window.location.hash.replace("#", "");
+  if (initialHash && document.getElementById(initialHash)) {
+    switchView(initialHash);
+  }
 }
 
 function initLayerExplorer() {
