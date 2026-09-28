@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSI Layers 1–4 Deep-Dive & Interactive Protocol Suite</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top App Navigation -->
+  <header class="border-b border-slate-800 bg-slate-950/80 sticky top-0 z-50 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-md text-sm">
+          OSI
+        </div>
+        <div>
+          <h1 class="text-base font-bold text-white tracking-tight">OSI Layers 1–4 Interactive Protocol Suite</h1>
+          <p class="text-xs text-slate-400">CSCI 250 Computer Networks • Complete Headers, Trailers & Architecture</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex flex-wrap items-center gap-1.5 text-xs font-semibold">
+        <button class="nav-tab-btn active px-3 py-1.5 rounded-lg border border-indigo-500 bg-slate-800/80 text-indigo-400 transition" data-target="view-layers">
+          Layers 1–4 Explorer
+        </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-lg border border-transparent text-slate-400 hover:text-slate-200 transition" data-target="view-headers">
+          Header & Trailer Inspector
+        </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-lg border border-transparent text-slate-400 hover:text-slate-200 transition" data-target="view-encapsulation">
+          Encapsulation Pipeline
+        </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-lg border border-transparent text-slate-400 hover:text-slate-200 transition" data-target="view-handshake">
+          TCP Handshake Simulator
+        </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-lg border border-transparent text-slate-400 hover:text-slate-200 transition" data-target="view-tools">
+          Subnet & EUI-64 Tools
+        </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-lg border border-transparent text-slate-400 hover:text-slate-200 transition" data-target="view-terminal">
+          CLI Diagnostic Terminal
+        </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-lg border border-transparent text-slate-400 hover:text-slate-200 transition" data-target="view-quiz">
+          Exam Prep Quiz
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 py-8">
+
+    <!-- VIEW 1: Layers 1-4 Explorer -->
+    <section id="view-layers" class="view-section">
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold text-white">OSI Layers 1 to 4 Architectural Exploration</h2>
+          <p class="text-xs text-slate-400 mt-1">Select a layer to examine its core responsibilities, PDU taxonomy, addressing schemes, and physical hardware.</p>
+        </div>
+        <div class="flex flex-wrap gap-2" id="layer-selector-pills">
+          <button class="layer-pill" data-layer="1">Layer 1: Physical</button>
+          <button class="layer-pill" data-layer="2">Layer 2: Data Link</button>
+          <button class="layer-pill" data-layer="3">Layer 3: Network</button>
+          <button class="layer-pill" data-layer="4">Layer 4: Transport</button>
+        </div>
+      </div>
+
+      <div id="layer-detail-container">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- VIEW 2: Header & Trailer Bit-Field Inspector -->
+    <section id="view-headers" class="view-section hidden">
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold text-white">Bit-by-Bit Header & Trailer Inspector</h2>
+          <p class="text-xs text-slate-400 mt-1">Click on any field to view exact bit offsets, typical values, binary breakdowns, and functional mechanics.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button class="proto-btn" data-proto="ethernet">Ethernet II Frame (with FCS Trailer)</button>
+          <button class="proto-btn" data-proto="ipv4">IPv4 Header</button>
+          <button class="proto-btn" data-proto="ipv6">IPv6 Header</button>
+          <button class="proto-btn" data-proto="tcp">TCP Segment Header</button>
+          <button class="proto-btn" data-proto="udp">UDP Datagram Header</button>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <h3 id="header-spec-title" class="text-lg font-bold text-white"></h3>
+        <p id="header-spec-desc" class="text-xs text-slate-400 mt-0.5"></p>
+      </div>
+
+      <div id="trailer-special-notice" class="mb-5 hidden"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="md:col-span-2">
+          <div class="text-xs font-mono uppercase text-slate-400 font-bold mb-2">Protocol Fields (Click to Inspect)</div>
+          <div id="header-grid-container" class="grid grid-cols-2 md:grid-cols-3 gap-2.5">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <div>
+          <div class="text-xs font-mono uppercase text-slate-400 font-bold mb-2">Field Inspector Details</div>
+          <div id="field-detail-panel">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: Encapsulation & Decapsulation Pipeline -->
+    <section id="view-encapsulation" class="view-section hidden">
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold text-white">Interactive Encapsulation & Decapsulation Lab</h2>
+        <p class="text-xs text-slate-400 mt-1">Watch application data get wrapped layer-by-layer with Transport, Network, and Data Link headers plus the FCS Trailer, then serialized to raw bits.</p>
+      </div>
+
+      <!-- Controls Panel -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 mb-6 shadow-xl">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+          <div>
+            <label class="block text-slate-400 mb-1 font-sans font-semibold">Application Payload (L7 SDU)</label>
+            <input type="text" id="sim-payload-input" value="GET /index.html HTTP/1.1" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white outline-none focus:border-indigo-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-sans font-semibold">Layer 4 Protocol</label>
+            <select id="sim-l4-select" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white outline-none focus:border-indigo-500">
+              <option value="TCP">TCP (Connection-Oriented Segment)</option>
+              <option value="UDP">UDP (Connectionless Datagram)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-sans font-semibold">Layer 3 Protocol</label>
+            <select id="sim-l3-select" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white outline-none focus:border-indigo-500">
+              <option value="IPv4">IPv4 (32-bit Address)</option>
+              <option value="IPv6">IPv6 (128-bit Address)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 mt-5 pt-4 border-t border-slate-800">
+          <div class="flex items-center gap-2">
+            <button id="sim-prev-btn" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white transition">◀ Prev</button>
+            <button id="sim-next-btn" class="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold text-white transition">Next Step ▶</button>
+            <button id="sim-play-btn" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-amber-400 transition">▶ Auto Play</button>
+            <button id="sim-reset-btn" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-400 transition">↺ Reset</button>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span id="sim-step-badge" class="text-xs font-mono text-slate-400"></span>
+            <span id="sim-pdu-badge"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage Container -->
+      <div id="sim-stage-container" class="mb-5">
+        <!-- Live Visual Stage -->
+      </div>
+
+      <!-- Explanation Box -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-xs text-slate-300">
+        <strong class="text-white block mb-1">Encapsulation Analysis:</strong>
+        <div id="sim-explanation-text"></div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: TCP Handshake Simulator -->
+    <section id="view-handshake" class="view-section hidden">
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold text-white">TCP 3-Way Handshake & Teardown State Machine</h2>
+        <p class="text-xs text-slate-400 mt-1">Visualize sequence and acknowledgment numbers, control flag transitions (SYN, ACK, FIN), and socket state progression.</p>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+          <!-- Client Card -->
+          <div class="bg-slate-950 p-5 rounded-xl border border-amber-500/40 text-center">
+            <span class="text-xs uppercase font-bold text-amber-400 tracking-wider">Client Host</span>
+            <div class="text-sm font-mono text-white mt-1">192.168.1.105 : 52144</div>
+            <div class="mt-3 py-1.5 px-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs font-mono text-amber-300">
+              State: <strong id="hs-client-state">CLOSED</strong>
+            </div>
+          </div>
+
+          <!-- Middle Flight Stage -->
+          <div class="text-center" id="hs-packet-flight">
+            <!-- Flying packet rendered dynamically -->
+          </div>
+
+          <!-- Server Card -->
+          <div class="bg-slate-950 p-5 rounded-xl border border-sky-500/40 text-center">
+            <span class="text-xs uppercase font-bold text-sky-400 tracking-wider">Server Host</span>
+            <div class="text-sm font-mono text-white mt-1">93.184.216.34 : 80</div>
+            <div class="mt-3 py-1.5 px-3 bg-sky-500/10 border border-sky-500/30 rounded-lg text-xs font-mono text-sky-300">
+              State: <strong id="hs-server-state">LISTEN</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between gap-4 mt-6 pt-4 border-t border-slate-800">
+          <div class="flex items-center gap-2">
+            <button id="hs-next-btn" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-semibold transition">
+              Step Connection Forward ▶
+            </button>
+            <button id="hs-reset-btn" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-semibold transition">
+              Reset Socket
+            </button>
+          </div>
+          <div id="hs-status-text" class="text-xs text-slate-300 font-mono flex-1 text-right truncate"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: Subnet & EUI-64 Tools -->
+    <section id="view-tools" class="view-section hidden">
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold text-white">Network Addressing & Subnet Toolkit</h2>
+        <p class="text-xs text-slate-400 mt-1">Interactive calculators for classful IPv4, CIDR block boundaries, and IPv6 EUI-64 MAC-to-Link-Local transformations.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Tool 1: Subnet Calculator -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
+          <h3 class="text-base font-bold text-sky-400 mb-3">IPv4 Subnet & Class Calculator</h3>
+          <div class="grid grid-cols-3 gap-2 mb-4">
+            <div class="col-span-2">
+              <label class="block text-[11px] text-slate-400 mb-1">IP Address</label>
+              <input type="text" id="calc-ip-input" value="192.168.1.100" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs font-mono text-white outline-none focus:border-sky-500">
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">CIDR (/)</label>
+              <input type="number" id="calc-cidr-input" value="24" min="0" max="32" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs font-mono text-white outline-none focus:border-sky-500">
+            </div>
+          </div>
+          <button id="calc-submit-btn" class="w-full py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-semibold transition mb-4">
+            Calculate Subnet Details
+          </button>
+          <div id="calc-result-container">
+            <!-- Results rendered here -->
+          </div>
+        </div>
+
+        <!-- Tool 2: EUI-64 Generator -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
+          <h3 class="text-base font-bold text-emerald-400 mb-3">IPv6 EUI-64 Autoconfiguration Engine</h3>
+          <div class="mb-4">
+            <label class="block text-[11px] text-slate-400 mb-1">48-Bit MAC Address</label>
+            <input type="text" id="eui-mac-input" value="00:1A:2B:3C:4D:5E" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs font-mono text-white outline-none focus:border-emerald-500">
+          </div>
+          <button id="eui-submit-btn" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold transition mb-4">
+            Generate EUI-64 Link-Local IPv6
+          </button>
+          <div id="eui-result-container">
+            <!-- Results rendered here -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 6: CLI Diagnostic Terminal -->
+    <section id="view-terminal" class="view-section hidden">
+      <div class="mb-4">
+        <h2 class="text-2xl font-bold text-white">CSCI 250 CLI Network Diagnostics Terminal</h2>
+        <p class="text-xs text-slate-400 mt-1">Simulates standard Linux and Windows command-line network diagnostic tools directly in your browser.</p>
+      </div>
+
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <div class="text-xs font-mono text-slate-400">bash — student@csci250-lab:~</div>
+          <div class="text-xs font-mono text-slate-500">Arch Linux / x86_64</div>
+        </div>
+        <div class="terminal-body" id="terminal-output">
+          <!-- Terminal output lines append here -->
+        </div>
+        <div class="terminal-input-row">
+          <span class="text-xs font-mono text-emerald-400 font-bold">student@csci250-lab:~$</span>
+          <input type="text" id="terminal-input" placeholder="Type 'help' or commands (ping, ifconfig, ip a, ipconfig, nslookup, dig, arp -a, ss)..." autofocus>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 7: Exam Prep Quiz -->
+    <section id="view-quiz" class="view-section hidden">
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold text-white">CSCI 250 Exam Prep Assessment</h2>
+        <p class="text-xs text-slate-400 mt-1">Review questions curated directly from the CSCI 250 Exam Review, PDU Encapsulation Guide, and Chapter 3 homework assignments.</p>
+      </div>
+
+      <div id="quiz-container" class="max-w-3xl mx-auto">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500 mt-12">
+    OSI Interactive Suite • Built for Computer Networks Curriculum • Educational Pair-Programming Artifact
+  </footer>
+
+  <!-- Scripts -->
+  <script src="headers-data.js"></script>
+  <script src="quiz-data.js"></script>
+  <script src="simulator.js"></script>
+  <script src="tools.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
